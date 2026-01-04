@@ -1,0 +1,17 @@
+# ===== Visual Studio =====
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# ===== Build output =====
+x64/
+Debug/
+Release/
+out/
+bin/
+obj/
+
+# ===== Visual Studio temp folders =====
+Car_Show.*/

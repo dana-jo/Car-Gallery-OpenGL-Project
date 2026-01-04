@@ -1,0 +1,11 @@
+#pragma once
+#include <string>
+
+class Texture
+{
+public:
+    unsigned int id = 0;
+
+    Texture(const std::string& path);
+    void bind(unsigned int unit = 0) const;
+};
