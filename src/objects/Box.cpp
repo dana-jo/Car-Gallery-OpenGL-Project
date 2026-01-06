@@ -1,7 +1,8 @@
-#include <glad/glad.h>
-
-#include "../objects/Box.h"
+#include "Box.h"
+#include "../utils/Mesh.h"
 #include "../core/Shader.h"
+#include "../graphics/Material.h"
+#include <glad/glad.h>
 
 Box::Box(float w, float h, float d)
 {
@@ -10,37 +11,32 @@ Box::Box(float w, float h, float d)
     float z = d / 2;
 
     std::vector<Vertex> vertices = {
-        // ---------- FRONT ----------
+        // FRONT
         {{-x,-y, z},{0,0,1},{0,0}},
         {{ x,-y, z},{0,0,1},{1,0}},
         {{ x, y, z},{0,0,1},{1,1}},
         {{-x, y, z},{0,0,1},{0,1}},
-
-        // ---------- BACK ----------
+        // BACK
         {{ x,-y,-z},{0,0,-1},{0,0}},
         {{-x,-y,-z},{0,0,-1},{1,0}},
         {{-x, y,-z},{0,0,-1},{1,1}},
         {{ x, y,-z},{0,0,-1},{0,1}},
-
-        // ---------- LEFT ----------
+        // LEFT
         {{-x,-y,-z},{-1,0,0},{0,0}},
         {{-x,-y, z},{-1,0,0},{1,0}},
         {{-x, y, z},{-1,0,0},{1,1}},
         {{-x, y,-z},{-1,0,0},{0,1}},
-
-        // ---------- RIGHT ----------
+        // RIGHT
         {{ x,-y, z},{1,0,0},{0,0}},
         {{ x,-y,-z},{1,0,0},{1,0}},
         {{ x, y,-z},{1,0,0},{1,1}},
         {{ x, y, z},{1,0,0},{0,1}},
-
-        // ---------- TOP ----------
+        // TOP
         {{-x, y, z},{0,1,0},{0,0}},
         {{ x, y, z},{0,1,0},{1,0}},
         {{ x, y,-z},{0,1,0},{1,1}},
         {{-x, y,-z},{0,1,0},{0,1}},
-
-        // ---------- BOTTOM ----------
+        // BOTTOM
         {{-x,-y,-z},{0,-1,0},{0,0}},
         {{ x,-y,-z},{0,-1,0},{1,0}},
         {{ x,-y, z},{0,-1,0},{1,1}},
@@ -61,46 +57,50 @@ Box::Box(float w, float h, float d)
     mesh->setup();
 }
 
-void Box::setFaceTexture(BoxFace face, Texture* texture)
+void Box::setFaceMaterial(BoxFace face, Material* material)
 {
-    faceTextures[static_cast<int>(face)] = texture;
+    int idx = static_cast<int>(face);
+    faceMaterials[idx] = material;
+    if (material) {
+        // update node transparency if any face material is transparent
+        if (material->transparent) this->transparent = true;
+    }
+    else {
+        // if material removed, recompute transparency across faces
+        bool anyTransparent = false;
+        for (auto m : faceMaterials) if (m && m->transparent) anyTransparent = true;
+        this->transparent = anyTransparent;
+    }
 }
 
-void Box::setTexture(Texture* texture)
+void Box::setMaterial(Material* material)
 {
-    for (auto& t : faceTextures)
-        t = texture;
+    for (int i = 0; i < 6; ++i) {
+        faceMaterials[i] = material;
+    }
+    if (material) this->transparent = material->transparent;
 }
 
 void Box::draw(Shader& shader)
 {
-
     shader.setMat4("model", getWorldMatrix());
 
     glBindVertexArray(mesh->VAO);
 
     for (int face = 0; face < 6; face++)
     {
-
-        if (faceTextures[face]) {
-
-            //glActiveTexture(GL_TEXTURE0);
-            faceTextures[face]->bind(0);
-            // optional: ensure sampler uniform points to unit 0
-            //shader.setInt("tex", 0);
+        Material* mat = faceMaterials[face];
+        if (mat) {
+            mat->bind(shader, 0);
         }
-
         glDrawElements(
             GL_TRIANGLES,
-            6,
+            indicesPerFace,
             GL_UNSIGNED_INT,
-            (void*)(face * 6 * sizeof(unsigned int))
+            (void*)(face * indicesPerFace * sizeof(unsigned int))
         );
     }
 
-	glBindVertexArray(0);
-
-	SceneNode::draw(shader); // draw children
+    glBindVertexArray(0);
+    SceneNode::draw(shader); // draw children
 }
-
-

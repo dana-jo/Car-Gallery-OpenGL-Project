@@ -1,5 +1,9 @@
-#include "../objects/Cylinder.h"
+#include "Cylinder.h"
+#include "../utils/Mesh.h"
+#include "../core/Shader.h"
+#include "../graphics/Material.h"
 #include <cmath>
+#include <glad/glad.h>
 
 Cylinder::Cylinder(float r, float h, int segments)
 {
@@ -7,7 +11,7 @@ Cylinder::Cylinder(float r, float h, int segments)
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
 
-    // ---------- SIDE ----------
+    // SIDE
     for (int i = 0; i <= segments; i++)
     {
         float angle = (float)i / segments * 2.0f * 3.1415926f;
@@ -18,7 +22,7 @@ Cylinder::Cylinder(float r, float h, int segments)
         vertices.push_back({ {x, half,z},{x,0,z},{(float)i / segments,1} });
     }
 
-    for (unsigned int i = 0; i < segments * 2; i += 2)
+    for (unsigned int i = 0; i < (unsigned int)segments * 2; i += 2)
     {
         indices.insert(indices.end(), {
             i, i + 1, i + 2,
@@ -28,7 +32,7 @@ Cylinder::Cylinder(float r, float h, int segments)
 
     sideIndexCount = indices.size();
 
-    // ---------- TOP ----------
+    // TOP
     unsigned int topCenter = vertices.size();
     vertices.push_back({ {0, half, 0},{0,1,0},{0.5f,0.5f} });
 
@@ -53,7 +57,7 @@ Cylinder::Cylinder(float r, float h, int segments)
 
     topIndexCount = indices.size() - sideIndexCount;
 
-    // ---------- BOTTOM ----------
+    // BOTTOM
     unsigned int bottomCenter = vertices.size();
     vertices.push_back({ {0,-half,0},{0,-1,0},{0.5f,0.5f} });
 
@@ -78,19 +82,26 @@ Cylinder::Cylinder(float r, float h, int segments)
 
     bottomIndexCount = indices.size() - sideIndexCount - topIndexCount;
 
-    mesh =  new Mesh(vertices, indices);
+    mesh = new Mesh(vertices, indices);
     mesh->setup();
 }
 
-void Cylinder::setPartTexture(CylinderPart part, Texture* texture)
+void Cylinder::setPartMaterial(CylinderPart part, Material* material)
 {
-    partTextures[(int)part] = texture;
+    partMaterials[(int)part] = material;
+    // update transparency flag of node if any material has transparency
+    if (material && material->transparent) this->transparent = true;
+    else {
+        bool anyTransparent = false;
+        for (auto m : partMaterials) if (m && m->transparent) anyTransparent = true;
+        this->transparent = anyTransparent;
+    }
 }
 
-void Cylinder::setTexture(Texture* texture)
+void Cylinder::setMaterial(Material* material)
 {
-    for(auto& t : partTextures)
-		t = texture;
+    for (auto& m : partMaterials) m = material;
+    if (material) this->transparent = material->transparent;
 }
 
 void Cylinder::draw(Shader& shader)
@@ -101,54 +112,21 @@ void Cylinder::draw(Shader& shader)
 
     unsigned int offset = 0;
 
-    if (partTextures[0]) {
-
-        //glActiveTexture(GL_TEXTURE0);
-
-        partTextures[0]->bind(0);
-
-        //shader.setInt("tex", 0);
-    }
-
-    glDrawElements(GL_TRIANGLES, sideIndexCount, GL_UNSIGNED_INT, 0);
+    // Side
+    if (partMaterials[0]) partMaterials[0]->bind(shader, 0);
+    glDrawElements(GL_TRIANGLES, sideIndexCount, GL_UNSIGNED_INT, (void*)(offset * sizeof(unsigned int)));
     offset += sideIndexCount;
 
-    if (partTextures[1]) {
-
-        //glActiveTexture(GL_TEXTURE0);
-
-        partTextures[1]->bind(0);
-
-        //shader.setInt("tex", 0);
-    }
-
-    glDrawElements(
-        GL_TRIANGLES,
-        topIndexCount,
-        GL_UNSIGNED_INT,
-        (void*)(offset * sizeof(unsigned int))
-    );
-
+    // Top
+    if (partMaterials[1]) partMaterials[1]->bind(shader, 0);
+    glDrawElements(GL_TRIANGLES, topIndexCount, GL_UNSIGNED_INT, (void*)(offset * sizeof(unsigned int)));
     offset += topIndexCount;
 
-    if (partTextures[2]) {
-
-        //glActiveTexture(GL_TEXTURE0);
-
-        partTextures[2]->bind(0);
-
-        //shader.setInt("tex", 0);
-    }
-
-    glDrawElements(
-        GL_TRIANGLES,
-        bottomIndexCount,
-        GL_UNSIGNED_INT,
-        (void*)(offset * sizeof(unsigned int))
-    );
+    // Bottom
+    if (partMaterials[2]) partMaterials[2]->bind(shader, 0);
+    glDrawElements(GL_TRIANGLES, bottomIndexCount, GL_UNSIGNED_INT, (void*)(offset * sizeof(unsigned int)));
 
     glBindVertexArray(0);
 
-	SceneNode::draw(shader); // draw children
+    SceneNode::draw(shader); // draw children
 }
-

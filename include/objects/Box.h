@@ -1,28 +1,28 @@
 #pragma once
-#include "../objects/Object.h"
-#include "../core/Shader.h"
-#include "../graphics/Texture.h"
+#include "../core/SceneNode.h"
+#include "../utils/Mesh.h"
 #include <array>
 
 enum class BoxFace
 {
-    FRONT = 0,
-    BACK = 1,
-    LEFT = 2,
-    RIGHT = 3,
-    TOP = 4,
-    BOTTOM = 5
+    Front = 0, Back = 1, Left = 2, Right = 3, Top = 4, Bottom = 5
 };
 
-class Box : public Object
+class Material;
+
+class Box : public SceneNode
 {
 public:
-    Box(float width, float height, float depth);
+    Box(float w, float h, float d);
+    ~Box() = default;
 
-    void draw(Shader& shader) override;
-    void setFaceTexture(BoxFace face, Texture* texture);
-    void setTexture(Texture* texture);
+    void setFaceMaterial(BoxFace face, Material* material);
+    void setMaterial(Material* material); // set same material for all faces
+
+    virtual void draw(class Shader& shader) override;
 
 private:
-    std::array<Texture*, 6> faceTextures{};
+    Mesh* mesh = nullptr;
+    std::array<Material*, 6> faceMaterials = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+    unsigned int indicesPerFace = 6;
 };

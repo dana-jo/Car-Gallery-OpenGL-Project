@@ -1,30 +1,24 @@
-#include "../graphics/Texture.h"
+#include "Texture.h"
 #include <glad/glad.h>
 #include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 
-Texture::Texture(const std::string& path)
+Texture::Texture(const std::string& path, TextureWrap wrap)
 {
     glGenTextures(1, &id);
     glBindTexture(GL_TEXTURE_2D, id);
 
-    // Texture parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    GLint wrapMode = (wrap == TextureWrap::Repeat) ? GL_REPEAT : GL_CLAMP_TO_EDGE;
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapMode);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, channels;
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(
-        path.c_str(),
-        &width,
-        &height,
-        &channels,
-        0
-    );
+    unsigned char* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 
     if (!data)
     {
@@ -34,7 +28,9 @@ Texture::Texture(const std::string& path)
     }
 
     GLenum format = GL_RGB;
-    if (channels == 4) format = GL_RGBA;
+    if (channels == 4) { format = GL_RGBA; hasAlpha = true; }
+    else if (channels == 3) format = GL_RGB;
+    else if (channels == 1) format = GL_RED;
 
     glTexImage2D(
         GL_TEXTURE_2D,
@@ -49,7 +45,6 @@ Texture::Texture(const std::string& path)
     );
 
     glGenerateMipmap(GL_TEXTURE_2D);
-
     stbi_image_free(data);
 }
 

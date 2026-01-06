@@ -1,12 +1,28 @@
 #pragma once
+#include <vector>
+#include <glm/glm.hpp>
+
+//class SceneNode;
+//class Shader;
+#include "SceneNode.h"
 #include "Shader.h"
-#include "../objects/Object.h"
 
 class Renderer
 {
 public:
     Shader shader;
 
-    Renderer();
-    void draw(Object& obj);
+    std::vector<SceneNode*> opaqueNodes;
+    std::vector<SceneNode*> transparentNodes;
+
+    Renderer() = default;
+
+    // Submit nodes (call this for every visible root/object each frame)
+    void submit(SceneNode* node);
+
+    // Draw all submitted nodes. Pass camera world position (for sorting)
+    void drawAll(const glm::vec3& cameraPos);
+
+    // Clear lists (call at end or start of frame)
+    void clear();
 };

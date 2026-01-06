@@ -1,112 +1,128 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#include "../core/Shader.h"
-#include "../core/Renderer.h"
-#include "../objects/Box.h"
-#include "../objects/Cylinder.h"
-
-
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
 
+#include "core/Shader.h"
+#include "core/Renderer.h"
+#include "objects/Box.h"
+#include "graphics/Texture.h"
+#include "graphics/Material.h"
 
-void framebuffer_size_callback(GLFWwindow*, int w, int h)
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+// ------------------------------------------------------------
+// Simple camera values
+// ------------------------------------------------------------
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
+
+glm::mat4 getView()
 {
-    glViewport(0, 0, w, h);
+    return glm::lookAt(
+        cameraPos,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 1.0f, 0.0f)
+    );
 }
+
+glm::mat4 getProjection(int w, int h)
+{
+    return glm::perspective(
+        glm::radians(60.0f),
+        (float)w / (float)h,
+        0.1f,
+        100.0f
+    );
+}
+
+// ------------------------------------------------------------
 
 int main()
 {
-    // ---------- GLFW ----------
+    // --------------------------------------------------------
+    // GLFW / OpenGL init
+    // --------------------------------------------------------
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Box Test", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Transparency Test", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
-
-    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cerr << "Failed to init GLAD\n";
+        return -1;
+    }
 
     glEnable(GL_DEPTH_TEST);
 
-    // ---------- Shader ----------
-    Shader shader("shaders/basic_shader.vert", "shaders/basic_shader.frag");
+    // --------------------------------------------------------
+    // Shader
+    // --------------------------------------------------------
+    Shader shader("shaders/mesh_shader.vert", "shaders/mesh_shader.frag");
 
+    Renderer renderer;
+    renderer.shader = shader;
 
-    Texture* front = new Texture("assets/textures/Red.png");
-    Texture* back = new Texture("assets/textures/Green.png");
-    Texture* left = new Texture("assets/textures/Blue.png");
-    Texture* right = new Texture("assets/textures/White.png");
-    Texture* top = new Texture("assets/textures/Yellow.png");
-    Texture* bottom = new Texture("assets/textures/Purple.png");
+    // --------------------------------------------------------
+    // Textures
+    // --------------------------------------------------------
+    Texture brickTex("assets/textures/brick.jpg");          // RGB
+    Texture windowTex("assets/textures/blue_transparent.png");        // RGBA (transparent)
 
+    // --------------------------------------------------------
+    // Materials
+    // --------------------------------------------------------
+    Material brickMat(&brickTex, { 2.0f, 2.0f });  // tiled
+    Material windowMat(&windowTex, { 1.0f, 1.0f }); // transparent
 
-    // ---------- Camera matrices ----------
-    glm::mat4 view = glm::translate(glm::mat4(1.0f), { 0, 0, -8 });
-    glm::mat4 projection = glm::perspective(
-        glm::radians(45.0f),
-        800.0f / 600.0f,
-        0.1f,
-        100.0f
-    );
+    // --------------------------------------------------------
+    // Objects
+    // --------------------------------------------------------
 
-    // Root car body
-    Box* car = new Box(4.0f, 1.2f, 2.0f);
-    car->position = { 0, 0, 0 };
-	car->setTexture(front);
+    // ---- Test 1: Opaque box ----
+    Box opaqueBox(1.0f, 1.0f, 1.0f);
+    opaqueBox.position = { -1.5f, 0.0f, -2.0f };
+    opaqueBox.setMaterial(&brickMat);
 
-    // Door (child of car)
-    Box* door = new Box(1.2f, 1.0f, 0.1f);
-    door->position = { 1.6f, 0.0f, 1.05f }; // relative to car
-    car->addChild(door);
-	door->setTexture(left);
+    // ---- Test 2: Back box (opaque) ----
+    Box backBox(1.0f, 1.0f, 1.0f);
+    backBox.position = { 1.0f, 0.0f, -3.5f };
+    backBox.setMaterial(&brickMat);
 
-    // Wheel FL
-    Cylinder* wheelFL = new Cylinder(0.4f, 0.3f, 32);
-    wheelFL->rotation.x = glm::radians(90.0f);
-    wheelFL->position = { -1.4f, -0.6f, 1.0f };
-    car->addChild(wheelFL);
-	wheelFL->setTexture(right);
+    // ---- Test 2: Front transparent box (window) ----
+    Box windowBox(1.0f, 1.0f, 0.1f);
+    windowBox.position = { 1.0f, 0.0f, -2.5f };
+    windowBox.setMaterial(&windowMat); // marks node as transparent
 
-    // Wheel FR
-    Cylinder* wheelFR = new Cylinder(0.4f, 0.3f, 32);
-    wheelFR->rotation.x = glm::radians(90.0f);
-    wheelFR->position = { 1.4f, -0.6f, 1.0f };
-    car->addChild(wheelFR);
-	wheelFR->setTexture(top);
-
-
-
-    // ---------- Render loop ----------
+    // --------------------------------------------------------
+    // Render loop
+    // --------------------------------------------------------
     while (!glfwWindowShouldClose(window))
     {
+        glfwPollEvents();
+
+        glClearColor(0.1f, 0.12f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         shader.use();
-        
-        shader.setInt("texture1", 0);
-        shader.setMat4("view", view);
+        shader.setMat4("view", getView());
+        shader.setMat4("projection", getProjection(1280, 720));
 
-        shader.setMat4("projection", projection);
+        // Submit objects every frame
+        renderer.submit(&opaqueBox);
+        renderer.submit(&backBox);
+        renderer.submit(&windowBox);
 
-		car->draw(shader);
-        car->position.x += 0.001f;
-
-        door->rotation.y = glm::radians(45.0f);
-
-        wheelFL->rotation.z += 0.02f;
-        wheelFR->rotation.z += 0.02f;
+        // Draw
+        renderer.drawAll(cameraPos);
+        renderer.clear();
 
         glfwSwapBuffers(window);
-        glfwPollEvents();
     }
 
     glfwTerminate();
     return 0;
 }
-

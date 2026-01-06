@@ -1,30 +1,27 @@
 #pragma once
-#include "Object.h"
-
+#include "../core/SceneNode.h"
+#include "../utils/Mesh.h"
 #include <array>
 
-enum class CylinderPart
-{
-    SIDE = 0,
-    TOP = 1,
-    BOTTOM = 2
-};
+enum class CylinderPart { Side = 0, Top = 1, Bottom = 2 };
 
-class Cylinder : public Object
+class Material;
+
+class Cylinder : public SceneNode
 {
 public:
+    Cylinder(float r, float h, int segments);
+    ~Cylinder() = default;
 
-    Cylinder(float radius, float height, int segments);
+    void setPartMaterial(CylinderPart part, Material* material);
+    void setMaterial(Material* material);
 
-	void setPartTexture(CylinderPart part, Texture* texture);
-	void setTexture(Texture* texture);
-
-    void draw(Shader& shader) override;
+    virtual void draw(class Shader& shader) override;
 
 private:
-
-	std::array<Texture*, 3> partTextures{};
-    int sideIndexCount = 0;
-    int topIndexCount = 0;
-    int bottomIndexCount = 0;
+    Mesh* mesh = nullptr;
+    unsigned int sideIndexCount = 0;
+    unsigned int topIndexCount = 0;
+    unsigned int bottomIndexCount = 0;
+    std::array<Material*, 3> partMaterials = { nullptr, nullptr, nullptr };
 };

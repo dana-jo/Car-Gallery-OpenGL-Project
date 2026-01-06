@@ -45,10 +45,15 @@
     <ClCompile Include="src\core\SceneNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_shader.vert" />
     <None Include="shaders\basic_shader.frag" />
+    <None Include="shaders\mesh_shader.vert" />
+    <None Include="shaders\mesh_shader.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Shader.h">
@@ -75,6 +80,9 @@
     <ClInclude Include="include\core\SceneNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Users\danaj\Documents\Textures\Red.png">
@@ -93,6 +101,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\..\Users\danaj\Documents\Textures\Purple.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\Users\danaj\Documents\Textures\brick.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\Users\danaj\Documents\Textures\blue_transparent.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
