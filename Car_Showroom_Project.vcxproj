@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
     <ClCompile Include="src\core\SceneNode.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\graphics\Material.cpp" />
+    <ClCompile Include="src\graphics\Skybox.cpp" />
     <ClCompile Include="src\graphics\Texture.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\core\Shader.cpp" />
@@ -36,11 +38,15 @@
     <None Include="shaders\basic_shader.vert" />
     <None Include="shaders\mesh_shader.frag" />
     <None Include="shaders\mesh_shader.vert" />
+    <None Include="shaders\skybox.frag" />
+    <None Include="shaders\skybox.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\core\Camera.h" />
     <ClInclude Include="include\core\Renderer.h" />
     <ClInclude Include="include\core\Shader.h" />
     <ClInclude Include="include\graphics\Material.h" />
+    <ClInclude Include="include\graphics\Skybox.h" />
     <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\objects\Box.h" />
     <ClInclude Include="include\objects\Cylinder.h" />
@@ -49,6 +55,12 @@
     <ClInclude Include="include\utils\Mesh.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\Downloads\back.png" />
+    <Image Include="..\..\Downloads\bottom.png" />
+    <Image Include="..\..\Downloads\front.png" />
+    <Image Include="..\..\Downloads\left.png" />
+    <Image Include="..\..\Downloads\right.png" />
+    <Image Include="..\..\Downloads\top.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\Blue.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\blue_transparent.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\brick.jpg" />
@@ -57,6 +69,12 @@
     <Image Include="..\..\Users\danaj\Documents\Textures\Red.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\White.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
+    <Image Include="assets\textures\skybox\back.png" />
+    <Image Include="assets\textures\skybox\bottom.png" />
+    <Image Include="assets\textures\skybox\front.png" />
+    <Image Include="assets\textures\skybox\left.png" />
+    <Image Include="assets\textures\skybox\right.png" />
+    <Image Include="assets\textures\skybox\top.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

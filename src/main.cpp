@@ -6,24 +6,16 @@
 #include "core/Renderer.h"
 #include "objects/Box.h"
 #include "graphics/Texture.h"
+#include "graphics/Skybox.h"
 #include "graphics/Material.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <Camera.h>
 
 // ------------------------------------------------------------
 // Simple camera values
 // ------------------------------------------------------------
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
-
-glm::mat4 getView()
-{
-    return glm::lookAt(
-        cameraPos,
-        glm::vec3(0.0f, 0.0f, 0.0f),
-        glm::vec3(0.0f, 1.0f, 0.0f)
-    );
-}
 
 glm::mat4 getProjection(int w, int h)
 {
@@ -49,6 +41,7 @@ int main()
 
     GLFWwindow* window = glfwCreateWindow(1280, 720, "Transparency Test", nullptr, nullptr);
     glfwMakeContextCurrent(window);
+    Camera camera(window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -97,6 +90,15 @@ int main()
     windowBox.position = { 1.0f, 0.0f, -2.5f };
     windowBox.setMaterial(&windowMat); // marks node as transparent
 
+    Skybox skybox({
+    "assets/skybox/right.jpg",
+    "assets/skybox/left.jpg",
+    "assets/skybox/top.jpg",
+    "assets/skybox/bottom.jpg",
+    "assets/skybox/front.jpg",
+    "assets/skybox/back.jpg"
+        });
+
     // --------------------------------------------------------
     // Render loop
     // --------------------------------------------------------
@@ -104,24 +106,30 @@ int main()
     {
         glfwPollEvents();
 
+        camera.update();
+
         glClearColor(0.1f, 0.12f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        shader.use();
-        shader.setMat4("view", getView());
-        shader.setMat4("projection", getProjection(1280, 720));
+        glm::mat4 view = camera.getView();
+        glm::mat4 projection = getProjection(1280, 720);
 
-        // Submit objects every frame
+        shader.use();
+        shader.setMat4("view", view);
+        shader.setMat4("projection", projection);
+
         renderer.submit(&opaqueBox);
         renderer.submit(&backBox);
         renderer.submit(&windowBox);
 
-        // Draw
-        renderer.drawAll(cameraPos);
+        renderer.drawAll(camera.getPosition());
         renderer.clear();
+
+        skybox.draw(view, projection);
 
         glfwSwapBuffers(window);
     }
+
 
     glfwTerminate();
     return 0;
