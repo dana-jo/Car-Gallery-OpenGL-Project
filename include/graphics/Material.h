@@ -9,6 +9,8 @@ class Material
 public:
     Texture* diffuse = nullptr;
     glm::vec2 tiling = { 1.0f, 1.0f };
+    float shininess = 32.0f;
+
     bool transparent = false;
 
     Material() = default;

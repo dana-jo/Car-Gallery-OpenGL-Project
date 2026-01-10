@@ -27,13 +27,11 @@ public:
     glm::mat4 getLocalMatrix() const;
     glm::mat4 getWorldMatrix() const;
 
+
     virtual void update() {}
     virtual void draw(class Shader& shader);
 
     // helper: returns world position extracted from world matrix
-    glm::vec3 getWorldPosition() const
-    {
-        glm::mat4 wm = getWorldMatrix();
-        return glm::vec3(wm[3]);
-    }
+    glm::vec3 getWorldPosition() const;
+	glm::vec3 getForward() const;
 };

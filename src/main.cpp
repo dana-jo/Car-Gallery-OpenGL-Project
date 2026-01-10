@@ -54,7 +54,7 @@ int main()
     // --------------------------------------------------------
     // Shader
     // --------------------------------------------------------
-    Shader shader("shaders/mesh_shader.vert", "shaders/mesh_shader.frag");
+    Shader shader("shaders/light_shader.vert", "shaders/light_shader.frag");
 
     Renderer renderer;
     renderer.shader = shader;
@@ -62,42 +62,30 @@ int main()
     // --------------------------------------------------------
     // Textures
     // --------------------------------------------------------
-    Texture brickTex("assets/textures/brick.jpg");          // RGB
-    Texture windowTex("assets/textures/blue_transparent.png");        // RGBA (transparent)
+    Texture blueTex("assets/textures/Purple.png");
 
     // --------------------------------------------------------
     // Materials
     // --------------------------------------------------------
-    Material brickMat(&brickTex, { 2.0f, 2.0f });  // tiled
-    Material windowMat(&windowTex, { 1.0f, 1.0f }); // transparent
+    Material blueMat(&blueTex, { 1.0f, 1.0f });
 
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
 
     // ---- Test 1: Opaque box ----
-    Box opaqueBox(1.0f, 1.0f, 1.0f);
-    opaqueBox.position = { -1.5f, 0.0f, -2.0f };
-    opaqueBox.setMaterial(&brickMat);
+    Box box(1.0f, 1.0f, 1.0f);
+	box.position = { 0.0f, 0.0f, 0.0f };
+	box.setMaterial(&blueMat);
 
-    // ---- Test 2: Back box (opaque) ----
-    Box backBox(1.0f, 1.0f, 1.0f);
-    backBox.position = { 1.0f, 0.0f, -3.5f };
-    backBox.setMaterial(&brickMat);
-
-    // ---- Test 2: Front transparent box (window) ----
-    Box windowBox(1.0f, 1.0f, 0.1f);
-    windowBox.position = { 1.0f, 0.0f, -2.5f };
-    windowBox.setMaterial(&windowMat); // marks node as transparent
-
-    Skybox skybox({
+    /*Skybox skybox({
     "assets/skybox/right.jpg",
     "assets/skybox/left.jpg",
     "assets/skybox/top.jpg",
     "assets/skybox/bottom.jpg",
     "assets/skybox/front.jpg",
     "assets/skybox/back.jpg"
-        });
+        });*/
 
     // --------------------------------------------------------
     // Render loop
@@ -118,14 +106,45 @@ int main()
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
 
-        renderer.submit(&opaqueBox);
-        renderer.submit(&backBox);
-        renderer.submit(&windowBox);
+		shader.setVec3("viewPos", camera.getPosition());
+
+		shader.setFloat("material_shininess", 32.0f);
+
+        shader.setVec3("dirLight.direction", glm::vec3(-0.3f, -1.0f, -0.2f));
+        shader.setVec3("dirLight.ambient", glm::vec3(0.1f));
+        shader.setVec3("dirLight.diffuse", glm::vec3(0.7f));
+        shader.setVec3("dirLight.specular", glm::vec3(0.2f));
+        shader.setBool("dirLight.enabled", true);
+
+        shader.setInt("numSpotLights", 1);
+
+        shader.setVec3("spotLights[0].position", camera.getPosition());
+        shader.setVec3("spotLights[0].direction", glm::vec3(0, 0, -1));
+
+        shader.setFloat("spotLights[0].cutOff",
+            glm::cos(glm::radians(12.5f)));
+        shader.setFloat("spotLights[0].outerCutOff",
+            glm::cos(glm::radians(17.5f)));
+
+        shader.setVec3("spotLights[0].ambient", glm::vec3(0.0f));
+        shader.setVec3("spotLights[0].diffuse", glm::vec3(1.0f));
+        shader.setVec3("spotLights[0].specular", glm::vec3(0.5f));
+
+        shader.setFloat("spotLights[0].constant", 1.0f);
+        shader.setFloat("spotLights[0].linear", 0.09f);
+        shader.setFloat("spotLights[0].quadratic", 0.032f);
+
+        shader.setBool("spotLights[0].enabled", true);
+
+        shader.setInt("numPointLights", 0);
+
+
+		renderer.submit(&box);
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
 
-        skybox.draw(view, projection);
+        //skybox.draw(view, projection);
 
         glfwSwapBuffers(window);
     }

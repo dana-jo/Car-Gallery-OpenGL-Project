@@ -34,9 +34,9 @@ void Camera::updateKeyboard(float dt)
 		position += velocity * up;
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		position -= velocity * up;
-    position.x = glm::clamp(position.x, -2.5f, 2.5f);
-    position.y = glm::clamp(position.y, -5.5f, 5.5f);
-    position.z = glm::clamp(position.z, 0.f, 1.5f);
+    //position.x = glm::clamp(position.x, -2.5f, 2.5f);
+    //position.y = glm::clamp(position.y, -5.5f, 5.5f);
+    //position.z = glm::clamp(position.z, 0.f, 1.5f);
 
 }
 

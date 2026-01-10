@@ -46,3 +46,17 @@ void SceneNode::draw(Shader& shader)
     for (SceneNode* child : children)
         child->draw(shader);
 }
+
+glm::vec3 SceneNode::getWorldPosition() const
+{
+    glm::mat4 wm = getWorldMatrix();
+    return glm::vec3(wm[3]); // translation column
+}
+
+glm::vec3 SceneNode::getForward() const
+{
+    glm::mat4 wm = getWorldMatrix();
+    // world-space forward vector -- apply rotation to local forward (0,0,-1)
+    glm::vec3 forward = glm::normalize(glm::vec3(wm * glm::vec4(0.0f, 0.0f, -1.0f, 0.0f)));
+    return forward;
+}

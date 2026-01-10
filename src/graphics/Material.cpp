@@ -17,6 +17,7 @@ void Material::bind(Shader& shader, unsigned int unit) const
         shader.setInt("tex", (int)unit);
     }
     shader.setVec2("uvScale", tiling);
+	shader.setFloat("material_shininess", shininess);
 }
 
 void Material::updateFromTexture()
