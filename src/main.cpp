@@ -8,6 +8,7 @@
 #include "graphics/Texture.h"
 #include "graphics/Skybox.h"
 #include "graphics/Material.h"
+#include "objects/Polygon.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -62,7 +63,7 @@ int main()
     // --------------------------------------------------------
     // Textures
     // --------------------------------------------------------
-    Texture blueTex("assets/textures/Purple.png");
+    Texture blueTex("assets/textures/brick.jpg");
 
     // --------------------------------------------------------
     // Materials
@@ -74,9 +75,22 @@ int main()
     // --------------------------------------------------------
 
     // ---- Test 1: Opaque box ----
-    Box box(1.0f, 1.0f, 1.0f);
-	box.position = { 0.0f, 0.0f, 0.0f };
-	box.setMaterial(&blueMat);
+    std::vector<glm::vec2> star = {
+    { 0.0f,  1.2f},
+    { 0.3f,  0.3f},
+    { 1.2f,  0.0f},
+    { 0.3f, -0.3f},
+    { 0.0f, -1.2f},
+    {-0.3f, -0.3f},
+    {-1.2f,  0.0f},
+    {-0.3f,  0.3f}
+    };
+
+	std::reverse(star.begin(), star.end());
+
+    Polygon wall = Polygon(star, 1.0f);
+    wall.position = { 0, 1, -5 };
+    wall.setMaterial(&blueMat);
 
     /*Skybox skybox({
     "assets/skybox/right.jpg",
@@ -139,7 +153,7 @@ int main()
         shader.setInt("numPointLights", 0);
 
 
-		renderer.submit(&box);
+		renderer.submit(&wall);
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();

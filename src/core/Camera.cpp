@@ -4,7 +4,7 @@
 Camera::Camera(GLFWwindow* win)
     : window(win)
 {
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);  // Hide and capture the cursor GLFW_CURSOR_DISABLED
 }
 
 void Camera::update()
