@@ -12,6 +12,7 @@ Release/
 out/
 bin/
 obj/
-pine/
+assets/pine
+external/lib/assimp-vc143-mt.lib
 # ===== Visual Studio temp folders =====
 Car_Show.*/

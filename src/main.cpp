@@ -159,7 +159,7 @@ int main()
         renderer.submit(&model);
 		//renderer.submit(&box);
 
-		renderer.submit(&wall);
+		//renderer.submit(&wall);
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
