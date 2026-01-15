@@ -156,13 +156,10 @@ int main()
 
         shader.setInt("numPointLights", 0);
 
-<<<<<<< HEAD
         renderer.submit(&model);
 		//renderer.submit(&box);
-=======
 
 		renderer.submit(&wall);
->>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();

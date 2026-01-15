@@ -12,6 +12,6 @@ Release/
 out/
 bin/
 obj/
-
+pine/
 # ===== Visual Studio temp folders =====
 Car_Show.*/
