@@ -33,6 +33,7 @@
     <ClCompile Include="src\objects\MeshNode.cpp" />
     <ClCompile Include="src\objects\Model.cpp" />
     <ClCompile Include="src\objects\Object.cpp" />
+    <ClCompile Include="src\objects\Polygon.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +60,7 @@
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
     <ClInclude Include="include\core\SceneNode.h" />
+    <ClInclude Include="include\objects\Polygon.h" />
     <ClInclude Include="include\utils\Mesh.h" />
   </ItemGroup>
   <ItemGroup>

@@ -85,7 +85,7 @@ void Mesh::draw()
     );
     glBindVertexArray(0);
 
-    std::cout << "Drawing mesh, indices: " << indices.size() << std::endl;
+    //std::cout << "Drawing mesh, indices: " << indices.size() << std::endl;
 
 }
 
