@@ -12,6 +12,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <Camera.h>
+#include <Model.h>
 
 // ------------------------------------------------------------
 // Simple camera values
@@ -72,20 +73,23 @@ int main()
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
+    Model model("assets/pine/scrubPine.obj");
+    model.position = { 0.0f, -1.0f, -3.0f };
+    model.scale = { 0.005f, 0.005f, 0.005f };
 
     // ---- Test 1: Opaque box ----
     Box box(1.0f, 1.0f, 1.0f);
 	box.position = { 0.0f, 0.0f, 0.0f };
 	box.setMaterial(&blueMat);
 
-    /*Skybox skybox({
+    Skybox skybox({
     "assets/skybox/right.jpg",
     "assets/skybox/left.jpg",
     "assets/skybox/top.jpg",
     "assets/skybox/bottom.jpg",
     "assets/skybox/front.jpg",
     "assets/skybox/back.jpg"
-        });*/
+        });
 
     // --------------------------------------------------------
     // Render loop
@@ -138,8 +142,8 @@ int main()
 
         shader.setInt("numPointLights", 0);
 
-
-		renderer.submit(&box);
+        renderer.submit(&model);
+		//renderer.submit(&box);
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
