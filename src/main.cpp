@@ -74,9 +74,9 @@ int main()
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
-    Model model("assets/pine/scrubPine.obj");
+    /*Model model("assets/pine/scrubPine.obj");
     model.position = { 0.0f, -1.0f, -3.0f };
-    model.scale = { 0.005f, 0.005f, 0.005f };
+    model.scale = { 0.005f, 0.005f, 0.005f };*/
 
     // ---- Test 1: Opaque box ----
     std::vector<glm::vec2> star = {
@@ -156,7 +156,7 @@ int main()
 
         shader.setInt("numPointLights", 0);
 
-        renderer.submit(&model);
+        //renderer.submit(&model);
 		//renderer.submit(&box);
 
 		//renderer.submit(&wall);
