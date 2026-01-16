@@ -1,188 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="src\core\Camera.cpp" />
+    <ClCompile Include="src\core\Renderer.cpp" />
+    <ClCompile Include="src\core\SceneNode.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\graphics\Material.cpp" />
+    <ClCompile Include="src\graphics\Skybox.cpp" />
+    <ClCompile Include="src\graphics\Texture.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\core\Shader.cpp" />
+    <ClCompile Include="src\objects\Box.cpp" />
+    <ClCompile Include="src\objects\Cylinder.cpp" />
+    <ClCompile Include="src\objects\MeshNode.cpp" />
+    <ClCompile Include="src\objects\Model.cpp" />
+    <ClCompile Include="src\objects\Object.cpp" />
+    <ClCompile Include="src\objects\Polygon.cpp" />
+    <ClCompile Include="src\utils\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Box.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Cylinder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\SceneNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Skybox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="src\objects\MeshNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Model.cpp">
-=======
-    <ClCompile Include="src\objects\Polygon.cpp">
->>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="include\core\Camera.h" />
+    <ClInclude Include="include\core\Renderer.h" />
+    <ClInclude Include="include\core\Shader.h" />
+    <ClInclude Include="include\graphics\Lights.h" />
+    <ClInclude Include="include\graphics\Material.h" />
+    <ClInclude Include="include\graphics\Skybox.h" />
+    <ClInclude Include="include\graphics\Texture.h" />
+    <ClInclude Include="include\objects\Box.h" />
+    <ClInclude Include="include\objects\Cylinder.h" />
+    <ClInclude Include="include\objects\MeshNode.h" />
+    <ClInclude Include="include\objects\Model.h" />
+    <ClInclude Include="include\objects\Object.h" />
+    <ClInclude Include="include\core\SceneNode.h" />
+    <ClInclude Include="include\objects\Polygon.h" />
+    <ClInclude Include="include\utils\Mesh.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\basic_shader.vert" />
+    <Image Include="..\..\Downloads\back.png" />
+    <Image Include="..\..\Downloads\bottom.png" />
+    <Image Include="..\..\Downloads\front.png" />
+    <Image Include="..\..\Downloads\left.png" />
+    <Image Include="..\..\Downloads\right.png" />
+    <Image Include="..\..\Downloads\top.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\Blue.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\blue_transparent.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\brick.jpg" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\Green.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\Purple.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\Red.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\White.png" />
+    <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
+    <Image Include="assets\textures\skybox\back.png" />
+    <Image Include="assets\textures\skybox\bottom.png" />
+    <Image Include="assets\textures\skybox\front.png" />
+    <Image Include="assets\textures\skybox\left.png" />
+    <Image Include="assets\textures\skybox\right.png" />
+    <Image Include="assets\textures\skybox\top.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="shaders\basic_shader.frag" />
-    <None Include="shaders\mesh_shader.vert" />
-    <None Include="shaders\mesh_shader.frag" />
-    <None Include="shaders\skybox.frag" />
-    <None Include="shaders\skybox.vert" />
+    <None Include="shaders\basic_shader.vert" />
     <None Include="shaders\light_shader.frag" />
     <None Include="shaders\light_shader.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\core\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utils\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Box.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Cylinder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\SceneNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Skybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Lights.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="include\objects\MeshNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Model.h">
-=======
-    <ClInclude Include="include\objects\Polygon.h">
->>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Red.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\White.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Blue.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Green.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Purple.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\brick.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\blue_transparent.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\back.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\bottom.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\front.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\left.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\right.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\top.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\back.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\bottom.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\front.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\left.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\right.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\top.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <None Include="shaders\mesh_shader.frag" />
+    <None Include="shaders\mesh_shader.vert" />
+    <None Include="shaders\skybox.frag" />
+    <None Include="shaders\skybox.vert" />
   </ItemGroup>
 </Project>
