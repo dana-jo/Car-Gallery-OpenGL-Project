@@ -91,11 +91,18 @@ int main()
 
 	World* world = new World();
 
+    float lastTime = (float)glfwGetTime();
+
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
 
         camera.update();
+
+        float currentTime = (float)glfwGetTime();
+        float dt = currentTime - lastTime;
+        lastTime = currentTime;
 
         glClearColor(0.1f, 0.12f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -120,7 +127,7 @@ int main()
         renderer.setSceneRoot(world);
         renderer.submit(world);
 		//renderer.submit(&model);
-
+        world->update(dt, camera.getPosition());
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();

@@ -59,7 +59,7 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	door->position = {15.0f, wallH / 2.0f, -15.0f };
 
 	// Rotate to face inward (towards gallery)
-	door->rotation.y = glm::radians(-45.0f);
+	door->rotation.y = glm::radians(135.0f);
 
 	door->setWallMaterial(wallMaterial);
 	door->setDoorMaterial(doorMaterial);
