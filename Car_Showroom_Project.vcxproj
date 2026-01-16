@@ -105,14 +105,12 @@
     <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
     <Image Include="..\..\Users\danaj\Downloads\window1.png" />
     <Image Include="assets\textures\brick.jpg" />
-    <Image Include="assets\textures\building-facade-windows.jpg" />
     <Image Include="assets\textures\cracked-asphalt.jpg" />
     <Image Include="assets\textures\door_frame.png" />
-    <Image Include="assets\textures\Green.png" />
-    <Image Include="assets\textures\ground-texture-pattern.jpg" />
-    <Image Include="assets\textures\interior_tiles_ao_4k.jpg" />
     <Image Include="assets\textures\light-wooden-floor-background.jpg" />
     <Image Include="assets\textures\modern-stone-wall.jpg" />
+    <Image Include="assets\textures\Purple.png" />
+    <Image Include="assets\textures\Red.png" />
     <Image Include="assets\textures\skybox\back.png" />
     <Image Include="assets\textures\skybox\bottom.png" />
     <Image Include="assets\textures\skybox\front.png" />
@@ -120,7 +118,9 @@
     <Image Include="assets\textures\skybox\right.png" />
     <Image Include="assets\textures\skybox\top.png" />
     <Image Include="assets\textures\white-building.jpg" />
+    <Image Include="assets\textures\White.png" />
     <Image Include="assets\textures\window1.png" />
+    <Image Include="assets\textures\Yellow.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
