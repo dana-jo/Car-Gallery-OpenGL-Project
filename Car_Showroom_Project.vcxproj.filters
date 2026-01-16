@@ -54,7 +54,14 @@
     <ClCompile Include="src\core\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="src\objects\MeshNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\objects\Model.cpp">
+=======
     <ClCompile Include="src\objects\Polygon.cpp">
+>>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\World.cpp">
@@ -138,7 +145,14 @@
     <ClInclude Include="include\graphics\Lights.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="include\objects\MeshNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\objects\Model.h">
+=======
     <ClInclude Include="include\objects\Polygon.h">
+>>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\scene\World.h">

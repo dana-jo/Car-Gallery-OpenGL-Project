@@ -20,6 +20,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <Model.h>
+
 // ------------------------------------------------------------
 // Simple camera values
 // ------------------------------------------------------------
@@ -70,6 +72,30 @@ int main()
     Material blueMat(&blueTex, { 1.0f, 1.0f });
 	Material brickMaterial(&brickTex, { 1.0f, 1.0f });
    
+    // --------------------------------------------------------
+    // Objects
+    // --------------------------------------------------------
+    Model model("assets/pine/scrubPine.obj");
+    model.position = { 0.0f, -1.0f, -3.0f };
+    model.scale = { 0.005f, 0.005f, 0.005f };
+
+    // ---- Test 1: Opaque box ----
+    std::vector<glm::vec2> star = {
+    { 0.0f,  1.2f},
+    { 0.3f,  0.3f},
+    { 1.2f,  0.0f},
+    { 0.3f, -0.3f},
+    { 0.0f, -1.2f},
+    {-0.3f, -0.3f},
+    {-1.2f,  0.0f},
+    {-0.3f,  0.3f}
+    };
+
+	std::reverse(star.begin(), star.end());
+
+    Polygon wall = Polygon(star, 1.0f);
+    wall.position = { 0, 1, -5 };
+    wall.setMaterial(&blueMat);
 
     Skybox skybox({
     "assets/skybox/right.jpg",
@@ -81,7 +107,6 @@ int main()
         });
 
 	World* world = new World();
-
 
     while (!glfwWindowShouldClose(window))
     {
@@ -109,9 +134,9 @@ int main()
         shader.setVec3("dirLight.specular", glm::vec3(0.03f));
         shader.setBool("dirLight.enabled", true);
 
-
-		renderer.setSceneRoot(world);
-		renderer.submit(world);
+        renderer.setSceneRoot(world);
+        renderer.submit(world);
+		renderer.submit(&model);
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
