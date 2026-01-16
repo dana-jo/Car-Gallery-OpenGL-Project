@@ -22,6 +22,7 @@
 
 #include <Model.h>
 
+
 // ------------------------------------------------------------
 // Simple camera values
 // ------------------------------------------------------------
@@ -79,24 +80,6 @@ int main()
     model.position = { 0.0f, -1.0f, -3.0f };
     model.scale = { 0.005f, 0.005f, 0.005f };
 
-    // ---- Test 1: Opaque box ----
-    std::vector<glm::vec2> star = {
-    { 0.0f,  1.2f},
-    { 0.3f,  0.3f},
-    { 1.2f,  0.0f},
-    { 0.3f, -0.3f},
-    { 0.0f, -1.2f},
-    {-0.3f, -0.3f},
-    {-1.2f,  0.0f},
-    {-0.3f,  0.3f}
-    };
-
-	std::reverse(star.begin(), star.end());
-
-    Polygon wall = Polygon(star, 1.0f);
-    wall.position = { 0, 1, -5 };
-    wall.setMaterial(&blueMat);
-
     Skybox skybox({
     "assets/skybox/right.jpg",
     "assets/skybox/left.jpg",
@@ -137,6 +120,7 @@ int main()
         renderer.setSceneRoot(world);
         renderer.submit(world);
 		renderer.submit(&model);
+
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
