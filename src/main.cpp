@@ -33,7 +33,7 @@ glm::mat4 getProjection(int w, int h)
         glm::radians(60.0f),
         (float)w / (float)h,
         0.1f,
-        300.0f
+        500.0f
     );
 }
 
@@ -76,9 +76,9 @@ int main()
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
-    Model model("assets/pine/scrubPine.obj");
+    /*Model model("assets/pine/scrubPine.obj");
     model.position = { 0.0f, -1.0f, -3.0f };
-    model.scale = { 0.005f, 0.005f, 0.005f };
+    model.scale = { 0.005f, 0.005f, 0.005f };*/
 
     Skybox skybox({
     "assets/skybox/right.jpg",
@@ -119,7 +119,7 @@ int main()
 
         renderer.setSceneRoot(world);
         renderer.submit(world);
-		renderer.submit(&model);
+		//renderer.submit(&model);
 
 
         renderer.drawAll(camera.getPosition());

@@ -26,6 +26,7 @@ GalleryShell::GalleryShell(
 	Texture* doorTex = new Texture("assets/textures/door_frame.png");
 	Texture* floorTex = new Texture("assets/textures/light-wooden-floor-background.jpg");
 
+
     // ---------- MATERIALS ----------
     wallMaterial = new Material(wallTex, { 2.0f, 2.0f });
     wallMaterial->shininess = 8.0f;
@@ -36,6 +37,7 @@ GalleryShell::GalleryShell(
 	doorMaterial = new Material(doorTex, { 1.0f, 1.0f });
 	floorMaterial = new Material(floorTex, { 4.0f, 4.0f });
 
+  
     float frontZ = 60.0f;
     float backZ = -60.0f;
     float sideX = 60.0f;
@@ -107,6 +109,7 @@ GalleryShell::GalleryShell(
     r4->position = { 40.0f, 0.0f, -40.0f };
     addChild(r4);
 
+    
 }
 
 void GalleryShell::buildWallRow(
