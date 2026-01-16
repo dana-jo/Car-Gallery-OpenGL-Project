@@ -9,7 +9,7 @@ Gallery::Gallery()
 
 	float width = 120.0f;
 	float depth = 120.0f;
-	float height = 50.0f;
+	float height = 40.0f;
 	float wallThickness = 0.3f;
 
     shell = new GalleryShell(width, depth, height, wallThickness);
