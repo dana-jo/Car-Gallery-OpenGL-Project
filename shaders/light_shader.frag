@@ -11,8 +11,8 @@ uniform sampler2D tex;            // base/albedo texture
 uniform float material_shininess; // e.g. 32.0
 
 // tunable limits
-const int MAX_POINT_LIGHTS = 8;
-const int MAX_SPOT_LIGHTS = 4;
+const int MAX_POINT_LIGHTS = 15; //8
+const int MAX_SPOT_LIGHTS = 15; //4
 
 // Light structs
 struct DirectionalLight {

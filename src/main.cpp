@@ -3,16 +3,22 @@
 #include <iostream>
 
 #include "core/Shader.h"
-#include "core/Renderer.h"
-#include "objects/Box.h"
-#include "graphics/Texture.h"
-#include "graphics/Skybox.h"
+#include "core/LightNode.h"
+#include "Renderer.h"
+#include "scene/World.h"
+#include "scene/MainCar.h"
+#include "scene/GalleryShell.h"
 #include "graphics/Material.h"
+#include "graphics/Texture.h"
+#include "Camera.h"
+#include "objects/WallWithHole.h"
+
+#include "objects/Box.h"
+#include "graphics/Skybox.h"
 #include "objects/Polygon.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Camera.h>
 
 // ------------------------------------------------------------
 // Simple camera values
@@ -24,7 +30,7 @@ glm::mat4 getProjection(int w, int h)
         glm::radians(60.0f),
         (float)w / (float)h,
         0.1f,
-        100.0f
+        300.0f
     );
 }
 
@@ -52,58 +58,31 @@ int main()
 
     glEnable(GL_DEPTH_TEST);
 
-    // --------------------------------------------------------
-    // Shader
-    // --------------------------------------------------------
+   
     Shader shader("shaders/light_shader.vert", "shaders/light_shader.frag");
 
     Renderer renderer;
     renderer.shader = shader;
 
-    // --------------------------------------------------------
-    // Textures
-    // --------------------------------------------------------
-    Texture blueTex("assets/textures/brick.jpg");
+    Texture blueTex("assets/textures/Purple.png");
+	Texture brickTex("assets/textures/window1.png");
 
-    // --------------------------------------------------------
-    // Materials
-    // --------------------------------------------------------
     Material blueMat(&blueTex, { 1.0f, 1.0f });
+	Material brickMaterial(&brickTex, { 1.0f, 1.0f });
+   
 
-    // --------------------------------------------------------
-    // Objects
-    // --------------------------------------------------------
-
-    // ---- Test 1: Opaque box ----
-    std::vector<glm::vec2> star = {
-    { 0.0f,  1.2f},
-    { 0.3f,  0.3f},
-    { 1.2f,  0.0f},
-    { 0.3f, -0.3f},
-    { 0.0f, -1.2f},
-    {-0.3f, -0.3f},
-    {-1.2f,  0.0f},
-    {-0.3f,  0.3f}
-    };
-
-	std::reverse(star.begin(), star.end());
-
-    Polygon wall = Polygon(star, 1.0f);
-    wall.position = { 0, 1, -5 };
-    wall.setMaterial(&blueMat);
-
-    /*Skybox skybox({
+    Skybox skybox({
     "assets/skybox/right.jpg",
     "assets/skybox/left.jpg",
     "assets/skybox/top.jpg",
     "assets/skybox/bottom.jpg",
     "assets/skybox/front.jpg",
     "assets/skybox/back.jpg"
-        });*/
+        });
 
-    // --------------------------------------------------------
-    // Render loop
-    // --------------------------------------------------------
+	World* world = new World();
+
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -124,41 +103,20 @@ int main()
 
 		shader.setFloat("material_shininess", 32.0f);
 
-        shader.setVec3("dirLight.direction", glm::vec3(-0.3f, -1.0f, -0.2f));
-        shader.setVec3("dirLight.ambient", glm::vec3(0.1f));
-        shader.setVec3("dirLight.diffuse", glm::vec3(0.7f));
-        shader.setVec3("dirLight.specular", glm::vec3(0.2f));
+        shader.setVec3("dirLight.direction", glm::vec3(-0.2f, -1.0f, -0.1f));
+        shader.setVec3("dirLight.ambient", glm::vec3(0.25f));
+        shader.setVec3("dirLight.diffuse", glm::vec3(0.12f));
+        shader.setVec3("dirLight.specular", glm::vec3(0.03f));
         shader.setBool("dirLight.enabled", true);
 
-        shader.setInt("numSpotLights", 1);
 
-        shader.setVec3("spotLights[0].position", camera.getPosition());
-        shader.setVec3("spotLights[0].direction", glm::vec3(0, 0, -1));
-
-        shader.setFloat("spotLights[0].cutOff",
-            glm::cos(glm::radians(12.5f)));
-        shader.setFloat("spotLights[0].outerCutOff",
-            glm::cos(glm::radians(17.5f)));
-
-        shader.setVec3("spotLights[0].ambient", glm::vec3(0.0f));
-        shader.setVec3("spotLights[0].diffuse", glm::vec3(1.0f));
-        shader.setVec3("spotLights[0].specular", glm::vec3(0.5f));
-
-        shader.setFloat("spotLights[0].constant", 1.0f);
-        shader.setFloat("spotLights[0].linear", 0.09f);
-        shader.setFloat("spotLights[0].quadratic", 0.032f);
-
-        shader.setBool("spotLights[0].enabled", true);
-
-        shader.setInt("numPointLights", 0);
-
-
-		renderer.submit(&wall);
+		renderer.setSceneRoot(world);
+		renderer.submit(world);
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
 
-        //skybox.draw(view, projection);
+        skybox.draw(view, projection);
 
         glfwSwapBuffers(window);
     }

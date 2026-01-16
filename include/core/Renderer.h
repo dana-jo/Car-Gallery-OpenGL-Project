@@ -25,4 +25,10 @@ public:
 
     // Clear lists (call at end or start of frame)
     void clear();
+    void setSceneRoot(SceneNode* root) { sceneRoot = root; }
+
+    void uploadLights(SceneNode* root, const glm::vec3& cameraPos);
+
+private:
+    SceneNode* sceneRoot = nullptr;
 };
