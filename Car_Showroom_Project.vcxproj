@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
+    <ClCompile Include="src\scene\Ambulance.cpp" />
+    <ClCompile Include="src\scene\TayoBus.cpp" />
     <ClCompile Include="src\scene\Room1.cpp" />
     <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
@@ -76,6 +78,8 @@
     <ClInclude Include="include\objects\Polygon.h" />
     <ClInclude Include="include\objects\WallWithDoor.h" />
     <ClInclude Include="include\objects\WallWithHole.h" />
+    <ClInclude Include="include\scene\Ambulance.h" />
+    <ClInclude Include="include\scene\TayoBus.h" />
     <ClInclude Include="include\scene\Gallery.h" />
     <ClInclude Include="include\scene\GalleryShell.h" />
     <ClInclude Include="include\scene\MainCar.h" />
@@ -104,6 +108,8 @@
     <Image Include="..\..\Users\danaj\Documents\Textures\White.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
     <Image Include="..\..\Users\danaj\Downloads\window1.png" />
+    <Image Include="..\car1up.png" />
+    <Image Include="..\PicsArt_26-01-16_17-01-38-660.png" />
     <Image Include="assets\textures\skybox\back.png" />
     <Image Include="assets\textures\skybox\bottom.png" />
     <Image Include="assets\textures\skybox\front.png" />
