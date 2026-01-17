@@ -7,10 +7,6 @@
 
 World::World()
 {
-       
-    TayoBus* bus = new TayoBus();
-    bus->position = { 0.0f, 0.0f, 0.0f };
-	addChild(bus);
 
     /*gallery = new Gallery();
     gallery->position = { 0.0f, 0.0f, 0.0f };

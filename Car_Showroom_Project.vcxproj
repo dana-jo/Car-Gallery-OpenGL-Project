@@ -110,10 +110,6 @@
     <Image Include="..\..\Users\danaj\Documents\Textures\White.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
     <Image Include="..\..\Users\danaj\Downloads\window1.png" />
-<<<<<<< HEAD
-    <Image Include="..\car1up.png" />
-    <Image Include="..\PicsArt_26-01-16_17-01-38-660.png" />
-=======
     <Image Include="assets\textures\brick.jpg" />
     <Image Include="assets\textures\cracked-asphalt.jpg" />
     <Image Include="assets\textures\door_frame.png" />
@@ -121,7 +117,6 @@
     <Image Include="assets\textures\modern-stone-wall.jpg" />
     <Image Include="assets\textures\Purple.png" />
     <Image Include="assets\textures\Red.png" />
->>>>>>> 7ad56298488f1ad0b591f7dd7afcddbfe896555c
     <Image Include="assets\textures\skybox\back.png" />
     <Image Include="assets\textures\skybox\bottom.png" />
     <Image Include="assets\textures\skybox\front.png" />
