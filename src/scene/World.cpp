@@ -17,10 +17,10 @@ World::World()
 
     addChild(gallery);*/
 
-    //surroundings = new Surroundings();
-    //surroundings->position = { 0.0f, -0.1f, 0.0f }; // slightly below gallery floor
+    surroundings = new Surroundings(120.0f, 0.3f);
+    surroundings->position = { 0.0f, -0.1f, 0.0f }; // slightly below gallery floor
 
-    //addChild(surroundings);
+    addChild(surroundings);
 }
 
 World::~World() = default;

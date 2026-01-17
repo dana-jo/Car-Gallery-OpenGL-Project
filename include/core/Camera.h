@@ -18,7 +18,11 @@ private:
 
     float yaw = -90.0f;
     float pitch = 0.0f;
+<<<<<<< HEAD
     float speed = 7.0f;
+=======
+    float speed = 15.0f;
+>>>>>>> 7ad56298488f1ad0b591f7dd7afcddbfe896555c
     float sensitivity = 0.1f;
 
     glm::vec3 front{ 0.0f, 0.0f, -1.0f };

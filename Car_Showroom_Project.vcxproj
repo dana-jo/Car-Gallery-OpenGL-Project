@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
     <ClCompile Include="src\scene\Ambulance.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\objects\Box.h" />
     <ClInclude Include="include\objects\Cylinder.h" />
+    <ClInclude Include="include\objects\FamilyCar.h" />
     <ClInclude Include="include\objects\MeshNode.h" />
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
@@ -108,14 +110,28 @@
     <Image Include="..\..\Users\danaj\Documents\Textures\White.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
     <Image Include="..\..\Users\danaj\Downloads\window1.png" />
+<<<<<<< HEAD
     <Image Include="..\car1up.png" />
     <Image Include="..\PicsArt_26-01-16_17-01-38-660.png" />
+=======
+    <Image Include="assets\textures\brick.jpg" />
+    <Image Include="assets\textures\cracked-asphalt.jpg" />
+    <Image Include="assets\textures\door_frame.png" />
+    <Image Include="assets\textures\light-wooden-floor-background.jpg" />
+    <Image Include="assets\textures\modern-stone-wall.jpg" />
+    <Image Include="assets\textures\Purple.png" />
+    <Image Include="assets\textures\Red.png" />
+>>>>>>> 7ad56298488f1ad0b591f7dd7afcddbfe896555c
     <Image Include="assets\textures\skybox\back.png" />
     <Image Include="assets\textures\skybox\bottom.png" />
     <Image Include="assets\textures\skybox\front.png" />
     <Image Include="assets\textures\skybox\left.png" />
     <Image Include="assets\textures\skybox\right.png" />
     <Image Include="assets\textures\skybox\top.png" />
+    <Image Include="assets\textures\white-building.jpg" />
+    <Image Include="assets\textures\White.png" />
+    <Image Include="assets\textures\window1.png" />
+    <Image Include="assets\textures\Yellow.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -200,7 +216,8 @@
       <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;glfw3dll.lib;opengl32.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(ProjectDir)external\lib\assimp-vc143-mt.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -220,7 +237,8 @@
       <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;glfw3dll.lib;opengl32.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(ProjectDir)external\lib\assimp-vc143-mt.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -238,7 +256,8 @@
       <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;glfw3dll.lib;opengl32.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(ProjectDir)external\lib\assimp-vc143-mt.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -258,7 +277,8 @@
       <AdditionalDependencies>glfw3.lib;glfw3_mt.lib;glfw3dll.lib;opengl32.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(ProjectDir)external\lib\assimp-vc143-mt.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

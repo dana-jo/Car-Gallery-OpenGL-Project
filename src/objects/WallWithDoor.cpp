@@ -37,9 +37,17 @@ WallWithDoor::WallWithDoor(
     addChild(top);
 
     // ---------------- DOOR ----------------
-    door = new Box(doorWidth, doorHeight, depth * 0.1f);
-    door->position = { 0.0f, -oh + dh, depth * 0.51f }; // slightly in front
-    addChild(door);
+
+    doorLeaf = new Box(doorWidth, doorHeight, depth);
+    doorLeaf->position = { 0.0f, -oh + dh, depth * 0.51f };
+
+    addChild(doorLeaf);
+
+    closedPos = doorLeaf->position;
+
+    // Slide to the RIGHT into the wall
+    openPos = closedPos + glm::vec3(doorWidth, 0.0f, 0.0f);
+
 }
 
 void WallWithDoor::setWallMaterial(Material* mat)
@@ -51,5 +59,29 @@ void WallWithDoor::setWallMaterial(Material* mat)
 
 void WallWithDoor::setDoorMaterial(Material* mat)
 {
-    door->setMaterial(mat);
+    doorLeaf->setMaterial(mat);
 }
+
+void WallWithDoor::update(float dt, const glm::vec3& cameraPos)
+{
+    glm::vec3 wallWorldPos = getWorldPosition();
+    float dist = glm::distance(wallWorldPos, cameraPos);
+
+    if (!isOpen && dist < openDistance)
+        isOpen = true;
+    else if (isOpen && dist > closeDistance)
+        isOpen = false;
+
+
+    glm::vec3 target = isOpen ? openPos : closedPos;
+
+    doorLeaf->position = glm::mix(
+        doorLeaf->position,
+        target,
+        glm::clamp(dt * slideSpeed, 0.0f, 1.0f)
+    );
+
+    SceneNode::update(dt, cameraPos);
+}
+
+

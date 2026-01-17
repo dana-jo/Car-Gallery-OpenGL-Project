@@ -4,8 +4,13 @@
 #include "../graphics/Material.h"
 #include "../core/LightNode.h"
 #include "scene/Room1.h"
+#include "scene/Room2.h"
+#include "scene/Room3.h"
+#include "scene/Room4.h"
 #include "objects/WallWithHole.h"
 #include "objects/WallWithDoor.h"
+
+class Room1;
 
 GalleryShell::GalleryShell(
     float width,
@@ -21,6 +26,7 @@ GalleryShell::GalleryShell(
 	Texture* doorTex = new Texture("assets/textures/door_frame.png");
 	Texture* floorTex = new Texture("assets/textures/light-wooden-floor-background.jpg");
 
+
     // ---------- MATERIALS ----------
     wallMaterial = new Material(wallTex, { 2.0f, 2.0f });
     wallMaterial->shininess = 8.0f;
@@ -31,6 +37,7 @@ GalleryShell::GalleryShell(
 	doorMaterial = new Material(doorTex, { 1.0f, 1.0f });
 	floorMaterial = new Material(floorTex, { 4.0f, 4.0f });
 
+  
     float frontZ = 60.0f;
     float backZ = -60.0f;
     float sideX = 60.0f;
@@ -86,7 +93,23 @@ GalleryShell::GalleryShell(
         addChild(light);
     }
 
+	Room1* room1 = new Room1(120.0f, 120.0f, 40.0f, t);
+    room1->position = {-40.0f, 0.0f, 40.0f};
+	addChild(room1);
 
+    Room2* r2 = new Room2(120.0f, 120.0f, 40.0f, t);
+    r2->position = { 40.0f, 0.0f,  40.0f };
+    addChild(r2);
+
+    Room3* r3 = new Room3(120.0f, 120.0f, 40.0f, t);
+    r3->position = { -40.0f, 0.0f, -40.0f };
+    addChild(r3);
+
+    Room4* r4 = new Room4(120.0f, 120.0f, 40.0f, t);
+    r4->position = { 40.0f, 0.0f, -40.0f };
+    addChild(r4);
+
+    
 }
 
 void GalleryShell::buildWallRow(

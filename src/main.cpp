@@ -21,6 +21,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <Model.h>
+#include <FamilyCar.h>
 
 
 // ------------------------------------------------------------
@@ -33,7 +34,7 @@ glm::mat4 getProjection(int w, int h)
         glm::radians(60.0f),
         (float)w / (float)h,
         0.1f,
-        300.0f
+        500.0f
     );
 }
 
@@ -76,9 +77,9 @@ int main()
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
-    Model model("assets/pine/scrubPine.obj");
+    /*Model model("assets/pine/scrubPine.obj");
     model.position = { 0.0f, -1.0f, -3.0f };
-    model.scale = { 0.005f, 0.005f, 0.005f };
+    model.scale = { 0.005f, 0.005f, 0.005f };*/
 
     Skybox skybox({
     "assets/skybox/right.jpg",
@@ -90,12 +91,24 @@ int main()
         });
 
 	World* world = new World();
+    FamilyCar* car = new FamilyCar();
+    car->position = { 43.0f, 0.0f, 43.0f };
+    car->rotation.y = glm::radians(-135.0f);
+    car->setCarMaterial();
+    world->addChild(car);
+
+    float lastTime = (float)glfwGetTime();
+
 
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
 
         camera.update();
+
+        float currentTime = (float)glfwGetTime();
+        float dt = currentTime - lastTime;
+        lastTime = currentTime;
 
         glClearColor(0.1f, 0.12f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -119,8 +132,8 @@ int main()
 
         renderer.setSceneRoot(world);
         renderer.submit(world);
-		renderer.submit(&model);
-
+		//renderer.submit(&model);
+        world->update(dt, camera.getPosition());
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
