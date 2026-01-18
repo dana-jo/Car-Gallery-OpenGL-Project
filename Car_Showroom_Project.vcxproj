@@ -20,6 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\objects\FamilyCar.cpp" />
+    <ClCompile Include="src\scene\FirstAidKit.cpp" />
+    <ClCompile Include="src\scene\OxygenTank.cpp" />
+    <ClCompile Include="src\scene\Stretcher.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
     <ClCompile Include="src\scene\Ambulance.cpp" />
@@ -75,11 +78,14 @@
     <ClInclude Include="include\objects\Box.h" />
     <ClInclude Include="include\objects\Cylinder.h" />
     <ClInclude Include="include\objects\FamilyCar.h" />
+    <ClInclude Include="include\scene\FirstAidKit.h" />
     <ClInclude Include="include\objects\MeshNode.h" />
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
     <ClInclude Include="include\core\SceneNode.h" />
+    <ClInclude Include="include\scene\OxygenTank.h" />
     <ClInclude Include="include\objects\Polygon.h" />
+    <ClInclude Include="include\scene\Stretcher.h" />
     <ClInclude Include="include\objects\WallWithDoor.h" />
     <ClInclude Include="include\objects\WallWithHole.h" />
     <ClInclude Include="include\scene\Ambulance.h" />
@@ -119,6 +125,11 @@
     <Image Include="assets\textures\door_frame.png" />
     <Image Include="assets\textures\light-wooden-floor-background.jpg" />
     <Image Include="assets\textures\modern-stone-wall.jpg" />
+    <Image Include="assets\textures\props\oxygen\green.png" />
+    <Image Include="assets\textures\props\oxygen\metal.png" />
+    <Image Include="assets\textures\props\oxygen\pressure.png" />
+    <Image Include="assets\textures\props\oxygen\round_metal.png" />
+    <Image Include="assets\textures\props\oxygen\tank_green.png" />
     <Image Include="assets\textures\Purple.png" />
     <Image Include="assets\textures\Red.png" />
     <Image Include="assets\textures\skybox\back.png" />
