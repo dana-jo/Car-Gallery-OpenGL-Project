@@ -21,21 +21,21 @@ FamilyCar::FamilyCar()
     float wheelWidth = 0.25f * scale;
     float wheelY = wheelRadius;
 
-    bodymatFront = new Material(new Texture("assets/familyCar/frontBody.png"));
-    bodymatBack = new Material(new Texture("assets/familyCar/backBody.png"));
-    bodymatLeft = new Material(new Texture("assets/familyCar/leftBody.png"));
-    bodymatRight = new Material(new Texture("assets/familyCar/rightBody.png"));
+    bodymatFront = new Material(new Texture("assets/textures/familyCar/frontBody.png"));
+    bodymatBack = new Material(new Texture("assets/textures/familyCar/backBody.png"));
+    bodymatLeft = new Material(new Texture("assets/textures/familyCar/leftBody.png"));
+    bodymatRight = new Material(new Texture("assets/textures/familyCar/rightBody.png"));
 
-    CabinmatFront = new Material(new Texture("assets/familyCar/frontCabin.png"));
-    CabinmatBack = new Material(new Texture("assets/familyCar/backCabin.png"));
-    CabinmatLeft = new Material(new Texture("assets/familyCar/leftCabin.png"));
-    CabinmatRight = new Material(new Texture("assets/familyCar/rightCabin.png"));
+    CabinmatFront = new Material(new Texture("assets/textures/familyCar/frontCabin.png"));
+    CabinmatBack = new Material(new Texture("assets/textures/familyCar/backCabin.png"));
+    CabinmatLeft = new Material(new Texture("assets/textures/familyCar/leftCabin.png"));
+    CabinmatRight = new Material(new Texture("assets/textures/familyCar/rightCabin.png"));
 
-    matRoof = new Material(new Texture("assets/familyCar/roof.png"));
-    matTransparente = new Material(new Texture("assets/familyCar/transparente.png"));
+    matRoof = new Material(new Texture("assets/textures/familyCar/roof.png"));
+    matTransparente = new Material(new Texture("assets/textures/familyCar/transparente.png"));
 
-    wheelMatSide = new Material(new Texture("assets/familyCar/wheelSide.png"));
-    wheelMatTop = new Material(new Texture("assets/familyCar/wheelTop.png"));
+    wheelMatSide = new Material(new Texture("assets/textures/familyCar/wheelSide.png"));
+    wheelMatTop = new Material(new Texture("assets/textures/familyCar/wheelTop.png"));
 
 
     body = new Box(bodyWidth, bodyHeight, bodyLength);
