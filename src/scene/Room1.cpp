@@ -21,44 +21,36 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	Material* doorMaterial = new Material(doorTex, { 1.0f, 1.0f });
 	Material* floorMaterial = new Material(floorTex, { 4.0f, 4.0f });
 
-	float wallW, wallH, depth, winW, winH;
-	
-	wallW = 30.0f;
-	wallH = 40.0f;
-	depth = 0.2f;
-	winW = 20.0f;
-	winH = 30.0f;
+	float wallH = gHeight;
+	float wallW = 30.0f;
+	float depth = 0.2f;
 
-	WallWithHole* wallBack = new WallWithHole(30.0f, 40.0f, 0.2f, 20.0f, 30.0f);
+	float doorH = wallH * 0.625f;
+	float doorW = 9.0f;
+	float doorWallW = 10.0f * 1.41f;
+	float winH = wallH * 0.75f;
+	float winW = 20.0f;
 
-	wallBack->position = { -5.0f, 20.0f, -20.0f };
+	// Back wall
+	WallWithHole* wallBack = new WallWithHole(wallW, wallH, depth, winW, winH);
+	wallBack->position = { -5.0f, wallH / 2.0f, -20.0f };
 	wallBack->setWallMaterial(wallMaterial);
 	wallBack->setWindowMaterial(windowMaterial);
 	addChild(wallBack);
 
 
-	WallWithHole* wallLeft = new WallWithHole(30.0f, 40.0f, 0.2f, 20.0f, 30.0f);
-
-	wallLeft->position = { 20.0f, 20.0f, 5.0f };
+	// Left wall
+	WallWithHole* wallLeft = new WallWithHole(wallW, wallH, depth, winW, winH);
+	wallLeft->position = { 20.0f, wallH / 2.0f, 5.0f };
 	wallLeft->rotation.y = glm::radians(90.0f);
 
 	wallLeft->setWallMaterial(wallMaterial);
 	wallLeft->setWindowMaterial(windowMaterial);
 	addChild(wallLeft);
 
-	float doorWallW = 10.0f * 1.41f;
-	float doorW = 9.0f;
-	float doorH = 25.0f;
-
-
-	WallWithDoor* door = new WallWithDoor(
-		doorWallW, wallH, depth, doorW, doorH
-	);
-
-	// Door is centered between the two walls
-	door->position = {15.0f, wallH / 2.0f, -15.0f };
-
-	// Rotate to face inward (towards gallery)
+	// Door
+	WallWithDoor* door = new WallWithDoor(doorWallW, wallH, depth, doorW, doorH);
+	door->position = { 15.0f, wallH / 2.0f, -15.0f };
 	door->rotation.y = glm::radians(135.0f);
 
 	door->setWallMaterial(wallMaterial);

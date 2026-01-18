@@ -199,67 +199,67 @@ Surroundings::Surroundings(float gallerySize, float t)
     addChild(bL5);
 
     // ---------- FRONT TREES ----------
-    Model* tF1 = new Model("assets/pine/scrubPine.obj");
+    Model* tF1 = new Model("assets/models/pine/scrubPine.obj");
     tF1->position = { -30.0f, 0.0f, streetOffset - 7.0f };
     tF1->rotation.y = glm::radians(15.0f);
     tF1->scale = { 0.03f, 0.03f, 0.03f };
     addChild(tF1);
 
-    Model* tF2 = new Model("assets/pine/scrubPine.obj");
+    Model* tF2 = new Model("assets/models/pine/scrubPine.obj");
     tF2->position = { 30.0f, 0.0f, streetOffset - 8.0f };
     tF2->rotation.y = glm::radians(-20.0f);
     tF2->scale = { 0.027f, 0.027f, 0.027f };
     addChild(tF2);
 
-    Model* tF3 = new Model("assets/pine/scrubPine.obj");
+    Model* tF3 = new Model("assets/models/pine/scrubPine.obj");
     tF3->position = { 90.0f, 0.0f, streetOffset };
     tF3->scale = { 0.035f, 0.035f, 0.035f };
     addChild(tF3);
 
     // ---------- BACK TREES ----------
-    Model* tB1 = new Model("assets/pine/scrubPine.obj");
+    Model* tB1 = new Model("assets/models/pine/scrubPine.obj");
     tB1->position = { -30.0f, 0.0f, -streetOffset + 2.0f };
     tB1->scale = { 0.03f, 0.03f, 0.03f };
     addChild(tB1);
 
-    Model* tB2 = new Model("assets/pine/scrubPine.obj");
+    Model* tB2 = new Model("assets/models/pine/scrubPine.obj");
     tB2->position = { 30.0f, 0.0f, -streetOffset + 11.0f };
     tB2->scale = { 0.027f, 0.027f, 0.027f };
     addChild(tB2);
 
-    Model* tB3 = new Model("assets/pine/scrubPine.obj");
+    Model* tB3 = new Model("assets/models/pine/scrubPine.obj");
     tB3->position = { -70.0f, 0.0f, -streetOffset + 7.0f };
     tB3->scale = { 0.035f, 0.035f, 0.035f };
     addChild(tB3);
 
     // ---------- LEFT TREES ----------
-    Model* tL1 = new Model("assets/pine/scrubPine.obj");
+    Model* tL1 = new Model("assets/models/pine/scrubPine.obj");
     tL1->position = { -streetOffset + 5.0f, 0.0f, -30.0f };
     tL1->scale = { 0.03f, 0.03f, 0.03f };
     addChild(tL1);
 
-    Model* tL2 = new Model("assets/pine/scrubPine.obj");
+    Model* tL2 = new Model("assets/models/pine/scrubPine.obj");
     tL2->position = { -streetOffset + 10.0f, 0.0f, 30.0f };
     tL2->scale = { 0.027f, 0.027f, 0.027f };
     addChild(tL2);
 
-    Model* tL3 = new Model("assets/pine/scrubPine.obj");
+    Model* tL3 = new Model("assets/models/pine/scrubPine.obj");
     tL3->position = { -streetOffset + 4.0f, 0.0f, 70.0f };
     tL3->scale = { 0.035f, 0.035f, 0.035f };
     addChild(tL3);
 
     // ---------- RIGHT TREES ----------
-    Model* tR1 = new Model("assets/pine/scrubPine.obj");
+    Model* tR1 = new Model("assets/models/pine/scrubPine.obj");
     tR1->position = { streetOffset - 5.0f, 0.0f, -30.0f };
     tR1->scale = { 0.03f, 0.03f, 0.03f };
     addChild(tR1);
 
-    Model* tR2 = new Model("assets/pine/scrubPine.obj");
+    Model* tR2 = new Model("assets/models/pine/scrubPine.obj");
     tR2->position = { streetOffset - 8.0f, 0.0f, 30.0f };
     tR2->scale = { 0.027f, 0.027f, 0.027f };
     addChild(tR2);
 
-    Model* tR3 = new Model("assets/pine/scrubPine.obj");
+    Model* tR3 = new Model("assets/models/pine/scrubPine.obj");
     tR3->position = { streetOffset - 4.0f, 0.0f, -70.0f };
     tR3->scale = { 0.035f, 0.035f, 0.035f };
     addChild(tR3);
