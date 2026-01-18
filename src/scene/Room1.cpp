@@ -4,6 +4,11 @@
 #include "graphics/Material.h"
 #include "WallWithHole.h"
 #include "WallWithDoor.h"
+#include "../scene/FirstAidKit.h"
+#include "../scene/OxygenTank.h"
+#include "../scene/Stretcher.h"
+#include "../scene/Ambulance.h"
+
 
 Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 {
@@ -24,24 +29,24 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	float wallH = gHeight;
 	float wallW = 30.0f;
 	float depth = 0.2f;
-
 	float doorH = wallH * 0.625f;
 	float doorW = 9.0f;
 	float doorWallW = 10.0f * 1.41f;
 	float winH = wallH * 0.75f;
-	float winW = 20.0f;
+	float winW = 10.0f;
+
 
 	// Back wall
-	WallWithHole* wallBack = new WallWithHole(wallW, wallH, depth, winW, winH);
+	WallWithHole* wallBack = new WallWithHole(wallW, wallH, depth, winW, 10);
 	wallBack->position = { -5.0f, wallH / 2.0f, -20.0f };
 	wallBack->setWallMaterial(wallMaterial);
 	wallBack->setWindowMaterial(windowMaterial);
 	addChild(wallBack);
 
-
 	// Left wall
-	WallWithHole* wallLeft = new WallWithHole(wallW, wallH, depth, winW, winH);
+	WallWithHole* wallLeft = new WallWithHole(wallW, wallH, depth, winW, 10);
 	wallLeft->position = { 20.0f, wallH / 2.0f, 5.0f };
+
 	wallLeft->rotation.y = glm::radians(90.0f);
 
 	wallLeft->setWallMaterial(wallMaterial);
@@ -56,5 +61,55 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	door->setWallMaterial(wallMaterial);
 	door->setDoorMaterial(doorMaterial);
 	addChild(door);
+
+	// Platform 
+	Material* platMat = new Material(new Texture("assets/textures/props/stretcher/platform.png"), { 1,1 });
+
+	Box* platform = new Box(18.0f, 1.0f, 28.0f);
+	platform->position = {-11.0f, 0.6f, 7.0f };
+	platform->setMaterial(platMat);
+	addChild(platform);
+
+	//Ambulance
+	Ambulance* ambulance = new Ambulance();
+	ambulance->position = { -11.0f, 2.0f, 3.0f };
+	ambulance->rotation.y = glm::radians(180.0f);
+	ambulance->scale = { 12,12,12 };
+	addChild(ambulance);
+
+	//Shelf
+	Box* shelf = new Box(5.0f, 1.0f, 10.0f);
+	shelf->position = { 17.0f,5.6f, 5.0f };
+	shelf->setMaterial(platMat);
+	addChild(shelf);
+
+	//Monitor
+	Material* monitorMat = new Material(new Texture("assets/textures/props/stretcher/monitor.png"), { 1,1 });
+	monitorMat->shininess = 100.0f;
+
+	Box* monitor = new Box(5.0f, 5.0f, 1.0f);
+	monitor->position = { 5.0f,15.0f, -19.0f };
+	monitor->setMaterial(wallMaterial);
+	monitor->setFaceMaterial(BoxFace::Front, monitorMat);
+	addChild(monitor);
+
+	//kit
+	auto* kit = new FirstAidKit();
+	kit->position = { 17.0f, 7.0f, 3.0f };
+	kit->rotation.y = glm::radians(-110.0f);
+	addChild(kit);
+
+	// Tank
+	auto* tank = new OxygenTank();
+	tank->position = { 17.0f, 6.0f , 8.0f };
+	tank->rotation.y = glm::radians(30.0f);
+	addChild(tank);
+
+	// Stretcher
+	auto* stretcher = new Stretcher();
+	stretcher->position = { 8.0f, 1.0f, 6.0f };
+	stretcher->rotation.y = glm::radians(25.0f);
+	stretcher->scale = { 0.8,0.8,0.8 };
+	addChild(stretcher);
 
 }

@@ -19,6 +19,7 @@ WallWithHole::WallWithHole(
 
     float sideW = ow - hw;
     float topBotH = oh - hh;
+    depth /= 2.0f;
 
     // LEFT
     left = new Box(sideW, outerH, depth);
@@ -43,6 +44,10 @@ WallWithHole::WallWithHole(
     // WINDOW
     window = new Box(holeW, holeH, depth * 0.1f);
     window->position = { 0, 0, 0 };
+	//window->ignoreCollision = true; // if u want to pass through the window
+
+    collider = new BoxCollider({ glm::max(outerW,20.0f),  glm::max(outerH,20.0f), glm::max(depth,20.0f)});
+
     addChild(window);
 }
     

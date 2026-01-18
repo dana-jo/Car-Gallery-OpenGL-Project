@@ -49,10 +49,13 @@ GalleryShell::GalleryShell(
     buildWallRow(-sideX, false, false); // right wall
 
     // ---------- FLOOR ----------
+
     Box* floor = new Box(width, t, depth);
     floor->position = { 0.0f, t / 2.0f, 0.0f };
     floor->setMaterial(floorMaterial);
     addChild(floor);
+	floor->collider = new BoxCollider({ 120.0f, glm::max(t,10.f), 120.0f });
+	//floor->ignoreCollision = true; // false should be
 
     // ---------- CEILING ----------
     Box* ceiling = new Box(width, t, depth);
@@ -264,6 +267,7 @@ void GalleryShell::addGalleryLights(float galleryWidth, float galleryDepth, floa
         setupSpotLight(l, { galleryWidth / 2.0f, lightY, z }, center - glm::vec3(galleryWidth / 2.0f, lightY, z));
         addChild(l);
     }
+
 }
 
 

@@ -6,7 +6,9 @@
 class MeshNode : public SceneNode
 {
 public:
-    MeshNode(Mesh* mesh, Material* material);
+    MeshNode(Mesh* mesh, Material* material,
+        const glm::vec3& colliderSize,
+        const glm::vec3& colliderCenter);
     ~MeshNode();
 
     void draw(Shader& shader) override;
