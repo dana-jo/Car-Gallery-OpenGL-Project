@@ -7,15 +7,15 @@
 
 FamilyCar::FamilyCar()
 {
-    float scale = 6.5f;
+    scale = 6.5f;
 
     float bodyLength = 4.2f * scale;
     float bodyWidth = 1.8f * scale;
     float bodyHeight = 0.6f * scale;
 
-    float cabinLength = 3.5f * scale;
-    float cabinHeight = 0.8f * scale;
-    float cabinWidth = bodyWidth;
+    cabinLength = 3.5f * scale;
+    cabinHeight = 0.8f * scale;
+    cabinWidth = bodyWidth;
 
     float wheelRadius = 0.35f * scale;
     float wheelWidth = 0.25f * scale;
@@ -32,18 +32,21 @@ FamilyCar::FamilyCar()
     CabinmatRight = new Material(new Texture("assets/familyCar/rightCabin.png"));
 
     matRoof = new Material(new Texture("assets/familyCar/roof.png"));
+    matRoof1 = new Material(new Texture("assets/familyCar/roof1.png"));
+
     matTransparente = new Material(new Texture("assets/familyCar/transparente.png"));
 
     wheelMatSide = new Material(new Texture("assets/familyCar/wheelSide.png"));
     wheelMatTop = new Material(new Texture("assets/familyCar/wheelTop.png"));
-
 
     body = new Box(bodyWidth, bodyHeight, bodyLength);
     body->position = { 0.0f, wheelY + bodyHeight * 0.5f, 0.0f };
     addChild(body);
 
     cabin = new Box(cabinWidth, cabinHeight, cabinLength);
-    cabin->position = { 0.0f, body->position.y + bodyHeight * 0.5f + cabinHeight * 0.5f,-0.1f };
+    cabin->position = { 0.0f,
+                        body->position.y + bodyHeight * 0.5f + cabinHeight * 0.5f,
+                        -bodyLength * 0.5f + cabinLength * 0.5f };
     addChild(cabin);
 
     float wheelX = bodyWidth * 0.5f + 0.05f;
@@ -62,6 +65,8 @@ FamilyCar::FamilyCar()
         wheels[i]->rotation.z = glm::radians(90.0f);
         addChild(wheels[i]);
     }
+
+    setCarMaterial();
 }
 
 void FamilyCar::setCarMaterial()
@@ -69,6 +74,7 @@ void FamilyCar::setCarMaterial()
     setBodyMaterial();
     setCabinMaterial();
     setWheelMaterial();
+    createFrontCabinPanel();
 }
 
 void FamilyCar::setBodyMaterial()
@@ -83,11 +89,11 @@ void FamilyCar::setBodyMaterial()
 
 void FamilyCar::setCabinMaterial()
 {
-    cabin->setFaceMaterial(BoxFace::Front, CabinmatFront);
+    cabin->setFaceMaterial(BoxFace::Front, matTransparente); 
     cabin->setFaceMaterial(BoxFace::Back, CabinmatBack);
     cabin->setFaceMaterial(BoxFace::Left, CabinmatRight);
     cabin->setFaceMaterial(BoxFace::Right, CabinmatLeft);
-    cabin->setFaceMaterial(BoxFace::Top, matRoof);
+    cabin->setFaceMaterial(BoxFace::Top, matRoof1);
     cabin->setFaceMaterial(BoxFace::Bottom, matTransparente);
 }
 
@@ -100,5 +106,30 @@ void FamilyCar::setWheelMaterial()
             wheels[i]->setPartMaterial(CylinderPart::Top, wheelMatTop);
         }
     }
+}
 
+void FamilyCar::createFrontCabinPanel()
+{
+    float thickness = 0.02f * scale;
+
+    cabinFront = new Polygon({
+        {-cabinWidth * 0.50f, -cabinHeight * 0.5f},
+        { cabinWidth * 0.50f, -cabinHeight * 0.5f},
+        { cabinWidth * 0.50f,  cabinHeight * 0.5f},
+        {-cabinWidth * 0.50f,  cabinHeight * 0.5f}
+        }, thickness);
+
+    cabinFront->position = {
+    0.0f,
+    cabin->position.y,
+    cabin->position.z +10 
+    };
+
+    cabinFront->rotation.x = glm::radians(-30.0f); 
+
+    cabinFront->setMaterial(CabinmatFront);
+
+    addChild(cabinFront);
+
+    cabin->setFaceMaterial(BoxFace::Front, matTransparente);
 }
