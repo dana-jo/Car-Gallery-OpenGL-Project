@@ -29,6 +29,9 @@
     <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
     <ClCompile Include="src\objects\FamilyCar.cpp" />
+    <ClCompile Include="src\scene\FirstAidKit.cpp" />
+    <ClCompile Include="src\scene\OxygenTank.cpp" />
+    <ClCompile Include="src\scene\Stretcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -61,6 +64,9 @@
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
     <ClInclude Include="include\objects\FamilyCar.h" />
+    <ClInclude Include="include\scene\FirstAidKit.h" />
+    <ClInclude Include="include\scene\OxygenTank.h" />
+    <ClInclude Include="include\scene\Stretcher.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
@@ -95,6 +101,11 @@
     <Image Include="assets\textures\White.png" />
     <Image Include="assets\textures\window1.png" />
     <Image Include="assets\textures\Yellow.png" />
+    <Image Include="assets\textures\props\oxygen\metal.png" />
+    <Image Include="assets\textures\props\oxygen\tank_green.png" />
+    <Image Include="assets\textures\props\oxygen\green.png" />
+    <Image Include="assets\textures\props\oxygen\pressure.png" />
+    <Image Include="assets\textures\props\oxygen\round_metal.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_shader.frag" />
