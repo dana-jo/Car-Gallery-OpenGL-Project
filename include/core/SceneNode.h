@@ -31,7 +31,7 @@ public:
     glm::mat4 getLocalMatrix() const;
     glm::mat4 getWorldMatrix() const;
 
-    virtual void update(float dt, const glm::vec3& cameraPos);
+	virtual void update(float dt, const glm::vec3& cameraPos);
     virtual void draw(class Shader& shader);
     void collectColliders(std::vector<SceneNode*>& out);
 

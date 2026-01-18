@@ -167,8 +167,18 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     Material* windowMat = new Material(new Texture("assets/textures/window1.png"), { 1,1 });
     Material* doorMat = new Material(new Texture("assets/textures/door_frame.png"), { 1,1 });
 
-    auto* wallFront = new WallWithHole(30.0f, 40.0f, 0.01f, 20, 30);
-    wallFront->position = { -5.0f, 20.0f, 20.0f };
+    float wallH = gHeight;
+    float wallW = 30.0f;
+    float depth = 0.2f;
+
+    float doorH = wallH * 0.625f;
+    float doorW = 9.0f;
+    float doorWallW = 10.0f * 1.41f;
+    float winH = wallH * 0.75f;
+    float winW = 20.0f;
+
+    auto* wallFront = new WallWithHole(wallW, wallH, depth, winW, winH);
+    wallFront->position = { -5.0f, wallH / 2.0f, 20.0f };
     wallFront->setWallMaterial(wallMat);
     wallFront->collider = new BoxCollider({ 
         30.0f,   // width
@@ -179,15 +189,19 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     addChild(wallFront);
 
 
-    auto* wallLeft = new WallWithHole(30.0f, 40.0f, 0.2f, 20, 30);
-    wallLeft->position = { 20.0f, 20.0f, -5.0f };
+   /* auto* wallLeft = new WallWithHole(30.0f, 40.0f, 0.2f, 20, 30);
+    wallLeft->position = { 20.0f, 20.0f, -5.0f };*/
+
+    auto* wallLeft = new WallWithHole(wallW, wallH, depth, winW, winH);
+    wallLeft->position = { 20.0f, wallH / 2.0f, -5.0f };
+
     wallLeft->rotation.y = glm::radians(90.0f);
     wallLeft->setWallMaterial(wallMat);
     wallLeft->setWindowMaterial(windowMat);
     addChild(wallLeft);
 
-    WallWithDoor* door3 = new WallWithDoor(10.0f * 1.41f, 40.0f, 0.2f, 9.0f, 25.0f);
-    door3->position = { 15.0f, 20.0f, 15.0f };
+    WallWithDoor* door3 = new WallWithDoor(doorWallW, wallH, depth, doorW, doorH);
+    door3->position = { 15.0f, wallH / 2.0f, 15.0f };
     door3->rotation.y = glm::radians(45.0f);
     door3->setWallMaterial(wallMat);
     door3->setDoorMaterial(doorMat);

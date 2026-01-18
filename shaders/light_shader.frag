@@ -10,6 +10,9 @@ uniform vec3 viewPos;             // camera position in world space
 uniform sampler2D tex;            // base/albedo texture
 uniform float material_shininess; // e.g. 32.0
 
+uniform bool hasTexture;
+uniform vec3 materialColor;
+
 // tunable limits
 const int MAX_POINT_LIGHTS = 15; //8
 const int MAX_SPOT_LIGHTS = 15; //4
@@ -128,7 +131,17 @@ void main()
     if (texColor.a < 0.01)
         discard;
 
-    vec3 albedo = texColor.rgb;
+    vec3 albedo;
+
+    if (hasTexture)
+    {
+        albedo = texColor.rgb;
+    }
+    else
+    {
+        albedo = materialColor;
+    }
+
     vec3 N = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
 

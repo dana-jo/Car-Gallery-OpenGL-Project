@@ -12,6 +12,10 @@ Release/
 out/
 bin/
 obj/
-assets/pine
+assets/models/
 # ===== Visual Studio temp folders =====
 Car_Show.*/
+
+
+
+

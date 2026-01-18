@@ -32,8 +32,18 @@
     <ClCompile Include="src\scene\Surroundings.cpp" />
     <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="src\objects\FamilyCar.cpp" />
+    <ClCompile Include="src\scene\FirstAidKit.cpp" />
+    <ClCompile Include="src\scene\OxygenTank.cpp" />
+    <ClCompile Include="src\scene\Stretcher.cpp" />
+=======
     <ClCompile Include="src\scene\StickMan.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="src\core\BoxCollider.cpp" />
+=======
+>>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
+>>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -69,9 +79,19 @@
     <ClInclude Include="include\scene\Surroundings.h" />
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
+<<<<<<< HEAD
+    <ClInclude Include="include\objects\FamilyCar.h" />
+    <ClInclude Include="include\scene\FirstAidKit.h" />
+    <ClInclude Include="include\scene\OxygenTank.h" />
+    <ClInclude Include="include\scene\Stretcher.h" />
+=======
     <ClInclude Include="include\scene\StickMan.h" />
+<<<<<<< HEAD
     <ClInclude Include="include\core\BoxCollider.h" />
     <ClInclude Include="include\core\Collision.h" />
+=======
+>>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
+>>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
@@ -106,6 +126,11 @@
     <Image Include="assets\textures\White.png" />
     <Image Include="assets\textures\window1.png" />
     <Image Include="assets\textures\Yellow.png" />
+    <Image Include="assets\textures\props\oxygen\metal.png" />
+    <Image Include="assets\textures\props\oxygen\tank_green.png" />
+    <Image Include="assets\textures\props\oxygen\green.png" />
+    <Image Include="assets\textures\props\oxygen\pressure.png" />
+    <Image Include="assets\textures\props\oxygen\round_metal.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_shader.frag" />

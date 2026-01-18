@@ -9,23 +9,24 @@
 #include "scene/Room4.h"
 #include "objects/WallWithHole.h"
 #include "objects/WallWithDoor.h"
+#include <Model.h>
 
 class Room1;
 
 GalleryShell::GalleryShell(
     float width,
     float depth,
-    float height,
-    float t
+    float wallHeight,
+    float t  // wall/floor thickness
 ) {
-	this->t = t;
+    this->t = t;
+    this->wallHeight = wallHeight; // store dynamic wall height
 
     // ---------- TEXTURES ----------
     Texture* wallTex = new Texture("assets/textures/white.png");
     Texture* windowTex = new Texture("assets/textures/window1.png");
-	Texture* doorTex = new Texture("assets/textures/door_frame.png");
-	Texture* floorTex = new Texture("assets/textures/light-wooden-floor-background.jpg");
-
+    Texture* doorTex = new Texture("assets/textures/door_frame.png");
+    Texture* floorTex = new Texture("assets/textures/light-wooden-floor-background.jpg");
 
     // ---------- MATERIALS ----------
     wallMaterial = new Material(wallTex, { 2.0f, 2.0f });
@@ -34,143 +35,117 @@ GalleryShell::GalleryShell(
     windowMaterial = new Material(windowTex, { 1.0f, 1.0f });
     windowMaterial->shininess = 32.0f;
 
-	doorMaterial = new Material(doorTex, { 1.0f, 1.0f });
-	floorMaterial = new Material(floorTex, { 4.0f, 4.0f });
+    doorMaterial = new Material(doorTex, { 1.0f, 1.0f });
+    floorMaterial = new Material(floorTex, { 4.0f, 4.0f });
 
-  
-    float frontZ = 60.0f;
-    float backZ = -60.0f;
-    float sideX = 60.0f;
+    float frontZ = depth / 2.0f;
+    float backZ = -depth / 2.0f;
+    float sideX = width / 2.0f;
 
-    // Front wall with door
-    buildWallRow(frontZ, true, true);
-
-    // Back wall (3 windows)
-    buildWallRow(backZ, false, true);
-
-    // Left wall (3 windows)
-    buildWallRow(sideX, false, false);
-
-    // Right wall (3 windows)
-    buildWallRow(-sideX, false, false);
+    // ---------- WALL ROWS ----------
+    buildWallRow(frontZ, true, true);   // front wall with door
+    buildWallRow(backZ, false, true);   // back wall with windows
+    buildWallRow(sideX, false, false);  // left wall
+    buildWallRow(-sideX, false, false); // right wall
 
     // ---------- FLOOR ----------
-    Box* floor = new Box(120.0f, t, 120.0f);   // width, thickness, depth
-    floor->position = { 0.0f, t / 2.0f, 0.0f }; // slightly above y=0
-    floor->setMaterial(floorMaterial);          // reuse wall material or make a floor material
+
+    Box* floor = new Box(width, t, depth);
+    floor->position = { 0.0f, t / 2.0f, 0.0f };
+    floor->setMaterial(floorMaterial);
+    addChild(floor);
 	floor->collider = new BoxCollider({ 120.0f, glm::max(t,10.f), 120.0f });
-   
 	//floor->ignoreCollision = true; // false should be
 
-    addChild(floor);
-
     // ---------- CEILING ----------
-    Box* ceiling = new Box(120.0f, t, 120.0f);
-    ceiling->position = { 0.0f, 40.0f + t / 2.0f, 0.0f }; // at top of gallery
-    ceiling->setMaterial(wallMaterial);         // can use same material or a different one
+    Box* ceiling = new Box(width, t, depth);
+    ceiling->position = { 0.0f, wallHeight + t / 2.0f, 0.0f };
+    ceiling->setMaterial(wallMaterial);
     addChild(ceiling);
 
-    // Add lights
-    addGalleryLights(120.0f, 120.0f, 40.0f); // gallery width, depth, wall height
-
     // ---------- LIGHTS ----------
-    float lightHeight = 40.0f - 0.5f; // slightly below ceiling
-    float margin = 2.0f;              // distance from walls
+    addGalleryLights(width, depth, wallHeight);
 
-    glm::vec3 lightPositions[] = {
-        { -60.0f + margin, lightHeight, -60.0f + margin }, // front-left
-        {  60.0f - margin, lightHeight, -60.0f + margin }, // front-right
-        { -60.0f + margin, lightHeight,  60.0f - margin }, // back-left
-        {  60.0f - margin, lightHeight,  60.0f - margin }, // back-right
-    };
+    // ---------- ROOMS ----------
+    Room1* room1 = new Room1(width, wallHeight, depth, t);
+    room1->position = { -width / 3.0f, 0.0f, depth / 3.0f };
+    addChild(room1);
 
-    for (auto& pos : lightPositions)
-    {
-        LightNode* light = new LightNode(LightType::Point);
-        light->position = pos;
-
-        // light color and intensity
-        light->ambient = glm::vec3(0.1f);  // soft ambient
-        light->diffuse = glm::vec3(1.0f);  // strong diffuse
-        light->specular = glm::vec3(1.0f);  // bright specular
-
-        addChild(light);
-    }
-
-	Room1* room1 = new Room1(120.0f, 120.0f, 40.0f, t);
-    room1->position = {-40.0f, 0.0f, 40.0f};
-	addChild(room1);
-
-    Room2* r2 = new Room2(120.0f, 120.0f, 40.0f, t);
-    r2->position = { 40.0f, 0.0f,  40.0f };
+    Room2* r2 = new Room2(width, wallHeight, depth, t);
+    r2->position = { width / 3.0f, 0.0f, depth / 3.0f };
     addChild(r2);
 
-    Room3* r3 = new Room3(120.0f, 120.0f, 40.0f, t);
-    r3->position = { -40.0f, 0.0f, -40.0f };
+    Room3* r3 = new Room3(width, wallHeight, depth, t);
+    r3->position = { -width / 3.0f, 0.0f, -depth / 3.0f };
     addChild(r3);
 
-    Room4* r4 = new Room4(120.0f, 120.0f, 40.0f, t);
-    r4->position = { 40.0f, 0.0f, -40.0f };
+    Room4* r4 = new Room4(width, wallHeight, depth, t);
+    r4->position = { width / 3.0f, 0.0f, -depth / 3.0f };
     addChild(r4);
 
-    
+	Model* securityCam = new Model("assets/models/security_camera_01_1k/security_camera_01_1k.fbx");
+	securityCam->scale = { 8.0f, 8.0f, 8.0f };
+	securityCam->rotation.z = glm::radians(180.0f);
+    securityCam->rotation.y = glm::radians(180.0f);
+	securityCam->rotation.x = glm::radians(100.0f);
+	securityCam->position = { 0.0f, wallHeight - 3.0f, -depth / 2.0f + 1.0f };
+	addChild(securityCam);
+
+	Model* couch = new Model("assets/models/sofa/3D_sofa_2-TuO.fbx");
+	couch->scale = { 0.3f, 0.3f, 0.3f };
+	couch->position = { 0.0f, 0.0f, depth / 2.0f - 5.0f };
+	couch->rotation.y = glm::radians(-180.0f);
+	addChild(couch);
+
 }
 
+
 void GalleryShell::buildWallRow(
-    float pos,             // position along the main axis
-    bool middleIsDoor,     // whether the middle wall is a door
-    bool alongZ     // true = front/back wall, false = left/right wall
-)
-{
+    float pos,
+    bool middleIsDoor,
+    bool alongZ
+) {
     float segW = 40.0f;
-    float wallH = 40.0f;
     float holeW = 30.0f;
-    float holeH = 30.0f;
+    float holeH = wallHeight * 0.75f; // scale window height
     float doorW = 20.0f;
-    float doorH = 30.0f;
+    float doorH = wallHeight * 0.85f; // scale door height
 
-    float y = wallH / 2.0f;
+    float y = wallHeight / 2.0f;
 
-    // Determine rotation and axis
     glm::vec3 leftPos, midPos, rightPos;
     float segDepth = t;
 
-    if (alongZ)
-    {
-        // Front/back walls along Z
+    if (alongZ) {
         leftPos = { -segW, y, pos };
         midPos = { 0.0f, y, pos };
         rightPos = { segW, y, pos };
     }
-    else
-    {
-        // Side walls along X (rotate 90°)
+    else {
         leftPos = { pos, y, -segW };
         midPos = { pos, y, 0.0f };
         rightPos = { pos, y, segW };
     }
 
     // LEFT
-    auto* left = new WallWithHole(segW, wallH, segDepth, holeW, holeH);
+    auto* left = new WallWithHole(segW, wallHeight, segDepth, holeW, holeH);
     left->position = leftPos;
-    if (!alongZ) left->rotation.y = glm::radians(90.0f); // rotate side walls
+    if (!alongZ) left->rotation.y = glm::radians(90.0f);
     left->setWallMaterial(wallMaterial);
     left->setWindowMaterial(windowMaterial);
     addChild(left);
 
     // MIDDLE
-    if (middleIsDoor)
-    {
-        auto* mid = new WallWithDoor(segW, wallH, segDepth, doorW, doorH);
+    if (middleIsDoor) {
+        auto* mid = new WallWithDoor(segW, wallHeight, segDepth, doorW, doorH);
         mid->position = midPos;
         if (!alongZ) mid->rotation.y = glm::radians(90.0f);
         mid->setWallMaterial(wallMaterial);
         mid->setDoorMaterial(doorMaterial);
         addChild(mid);
     }
-    else
-    {
-        auto* mid = new WallWithHole(segW, wallH, segDepth, holeW, holeH);
+    else {
+        auto* mid = new WallWithHole(segW, wallHeight, segDepth, holeW, holeH);
         mid->position = midPos;
         if (!alongZ) mid->rotation.y = glm::radians(90.0f);
         mid->setWallMaterial(wallMaterial);
@@ -179,7 +154,7 @@ void GalleryShell::buildWallRow(
     }
 
     // RIGHT
-    auto* right = new WallWithHole(segW, wallH, segDepth, holeW, holeH);
+    auto* right = new WallWithHole(segW, wallHeight, segDepth, holeW, holeH);
     right->position = rightPos;
     if (!alongZ) right->rotation.y = glm::radians(90.0f);
     right->setWallMaterial(wallMaterial);
@@ -187,54 +162,42 @@ void GalleryShell::buildWallRow(
     addChild(right);
 }
 
-void GalleryShell::addGalleryLights(float galleryWidth, float galleryDepth, float wallHeight)
-{
-    float lightY = wallHeight - 1;  // just below 40 wall height
-    float seg[] = { -40.0f, 0.0f, 40.0f };
 
+void GalleryShell::addGalleryLights(float galleryWidth, float galleryDepth, float wallHeight) {
+    float lightY = wallHeight - 0.5f; // just below ceiling
+    float seg[] = { -40.0f, 0.0f, 40.0f };
     glm::vec3 center = { 0.0f, 0.0f, 0.0f };
 
-    // ---------- FRONT WALL ----------
-    for (float x : seg)
-    {
-        auto* l = new LightNode(LightType::Spot);
-        l->enabled = true;
-        glm::vec3 pos = { x, lightY, 60.0f };
-        setupSpotLight(l, pos, center - pos);
+    // FRONT WALL
+    for (float x : seg) {
+        LightNode* l = new LightNode(LightType::Spot);
+        setupSpotLight(l, { x, lightY, galleryDepth / 2.0f }, center - glm::vec3(x, lightY, galleryDepth / 2.0f));
         addChild(l);
     }
 
-    // ---------- BACK WALL ----------
-    for (float x : seg)
-    {
-        auto* l = new LightNode(LightType::Spot);
-		l->enabled = true;
-        glm::vec3 pos = { x, lightY, -60.0f };
-        setupSpotLight(l, pos, center - pos);
+    // BACK WALL
+    for (float x : seg) {
+        LightNode* l = new LightNode(LightType::Spot);
+        setupSpotLight(l, { x, lightY, -galleryDepth / 2.0f }, center - glm::vec3(x, lightY, -galleryDepth / 2.0f));
         addChild(l);
     }
 
-    // ---------- LEFT WALL ----------
-    for (float z : seg)
-    {
-        auto* l = new LightNode(LightType::Spot);
-        l->enabled = true;
-        glm::vec3 pos = { -60.0f, lightY, z };
-        setupSpotLight(l, pos, center - pos);
+    // LEFT WALL
+    for (float z : seg) {
+        LightNode* l = new LightNode(LightType::Spot);
+        setupSpotLight(l, { -galleryWidth / 2.0f, lightY, z }, center - glm::vec3(-galleryWidth / 2.0f, lightY, z));
         addChild(l);
     }
 
-    // ---------- RIGHT WALL ----------
-    for (float z : seg)
-    {
-        auto* l = new LightNode(LightType::Spot);
-        l->enabled = true;
-        glm::vec3 pos = { 60.0f, lightY, z };
-        setupSpotLight(l, pos, center - pos);
+    // RIGHT WALL
+    for (float z : seg) {
+        LightNode* l = new LightNode(LightType::Spot);
+        setupSpotLight(l, { galleryWidth / 2.0f, lightY, z }, center - glm::vec3(galleryWidth / 2.0f, lightY, z));
         addChild(l);
     }
 
 }
+
 
 // ---------------- Helper to set common light properties ----------------
 void GalleryShell::setLightProps(LightNode* light)
