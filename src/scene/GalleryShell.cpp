@@ -89,10 +89,82 @@ GalleryShell::GalleryShell(
 	addChild(securityCam);
 
 	Model* couch = new Model("assets/models/sofa/3D_sofa_2-TuO.fbx");
-	couch->scale = { 0.3f, 0.3f, 0.3f };
-	couch->position = { 0.0f, 0.0f, depth / 2.0f - 5.0f };
+	couch->scale = { 13.f, 13.0f, 13.0f };
+	couch->position = { 50.0f,  0.0f, -1.0f};
 	couch->rotation.y = glm::radians(-180.0f);
+	couch->rotation.x = glm::radians(90.0f);
+	couch->rotation.z = glm::radians(90.0f);
 	addChild(couch);
+
+	Model* plant = new Model("assets/models/potted_plant_01_1k/potted_plant_01_1k.fbx");
+	plant->scale = { 12.f, 12.0f, 12.0f };
+	plant->position = { 52.0f, 0.0f, 16.0f };
+	plant->rotation.x = glm::radians(-90.0f);
+	addChild(plant);
+
+   
+    LightNode* couchLight = new LightNode(LightType::Point);
+    couchLight->position = {
+        couch->position.x + 5.0,
+        5.0f,                      
+        couch->position.z -3.0f
+    };
+
+    // Soft, warm light
+    couchLight->ambient = glm::vec3(0.05f);
+    couchLight->diffuse = glm::vec3(0.8f, 0.75f, 0.7f); // warm tone
+    couchLight->specular = glm::vec3(0.3f);
+
+    // Attenuation for softness
+    couchLight->constant = 1.0f;
+    couchLight->linear = 0.09f;
+    couchLight->quadratic = 0.032f;
+
+    addChild(couchLight);
+
+	Model* chandelier = new Model("assets/models/ceiling_lamp_flower_style/scene.gltf");
+	chandelier->scale = { 0.08f, 0.08f, 0.08f };
+	chandelier->position = { 0.0f, wallHeight - 14.0f, 0.0f };
+	chandelier->rotation.x = glm::radians(-90.0f);
+	addChild(chandelier);
+
+	LightNode* chandelierLight = new LightNode(LightType::Point);
+    chandelierLight->position = {
+        chandelier->position.x,
+        chandelier->position.y,
+        chandelier->position.z
+	};
+	chandelierLight->ambient = glm::vec3(0.5f);
+	chandelierLight->diffuse = glm::vec3(1.5f, 1.4f, 1.2f); // warm white
+	chandelierLight->specular = glm::vec3(1.0f);
+	// Attenuation
+	chandelierLight->constant = 1.0f;
+	chandelierLight->linear = 0.14f;
+	chandelierLight->quadratic = 0.07f;
+	addChild(chandelierLight);
+
+	Model* armchair = new Model("assets/models/armchair/3D_armchair_11.fbx");
+	armchair->scale = { 15.f, 15.0f, 15.0f };
+	armchair->position = { -50.0f, 0.0f, -10.0f };
+	armchair->rotation.z = glm::radians(45.0f);
+	armchair->rotation.x = glm::radians(-90.0f);
+	addChild(armchair);
+
+	LightNode* armchairLight = new LightNode(LightType::Point);
+    armchairLight->position = {
+        armchair->position.x - 3.0f,
+        5.0f,
+        armchair->position.z + 3.0f
+    };
+    // Soft, warm light
+    armchairLight->ambient = glm::vec3(0.05f);
+    armchairLight->diffuse = glm::vec3(0.8f, 0.75f, 0.7f); // warm tone
+    armchairLight->specular = glm::vec3(0.3f);
+    // Attenuation for softness
+    armchairLight->constant = 1.0f;
+    armchairLight->linear = 0.09f;
+    armchairLight->quadratic = 0.032f;
+	addChild(armchairLight);
 
 }
 
