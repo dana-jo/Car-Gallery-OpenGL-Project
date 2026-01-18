@@ -99,13 +99,25 @@ int main()
 
     float lastTime = (float)glfwGetTime();
 
+    // after creating camera
+        camera.collider = new BoxCollider({ 0.5f, 1.8f, 0.5f });
+
+    // collect world objects with colliders
+    std::vector<SceneNode*> worldObjects;
+
 
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
 
-        camera.update();
+        std::vector<SceneNode*> worldObjects;
+        world->collectColliders(worldObjects);
+        camera.update(worldObjects);
+        //camera.update();
+    //    camera.update(worldObjects); // pass world objects for collision
+    //worldObjects.push_back(world); // recursively, or flatten tree and push nodes with colliders
 
+        std::cout << "Colliders count: " << worldObjects.size() << std::endl;
         float currentTime = (float)glfwGetTime();
         float dt = currentTime - lastTime;
         lastTime = currentTime;

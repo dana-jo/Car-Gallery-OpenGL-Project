@@ -66,3 +66,13 @@ void SceneNode::update(float dt, const glm::vec3& cameraPos)
     for (SceneNode* child : children)
         child->update(dt, cameraPos);
 }
+
+void SceneNode::collectColliders(std::vector<SceneNode*>& out)
+{
+    if (collider && !ignoreCollision)
+        out.push_back(this);
+
+    for (SceneNode* child : children)
+        child->collectColliders(out);
+}
+

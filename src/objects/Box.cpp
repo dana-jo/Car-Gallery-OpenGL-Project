@@ -3,9 +3,16 @@
 #include "../core/Shader.h"
 #include "../graphics/Material.h"
 #include <glad/glad.h>
+#include "../core/BoxCollider.h"   //
+
 
 Box::Box(float w, float h, float d)
+    : width(w), height(h), depth(d)
 {
+    scale = { 1,1,1 };
+
+    collider = new BoxCollider({ w, h, d });
+ 
     float x = w / 2;
     float y = h / 2;
     float z = d / 2;

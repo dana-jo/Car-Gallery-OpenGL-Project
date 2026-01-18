@@ -58,6 +58,10 @@ GalleryShell::GalleryShell(
     Box* floor = new Box(120.0f, t, 120.0f);   // width, thickness, depth
     floor->position = { 0.0f, t / 2.0f, 0.0f }; // slightly above y=0
     floor->setMaterial(floorMaterial);          // reuse wall material or make a floor material
+	floor->collider = new BoxCollider({ 120.0f, glm::max(t,10.f), 120.0f });
+   
+	//floor->ignoreCollision = true; // false should be
+
     addChild(floor);
 
     // ---------- CEILING ----------
@@ -93,21 +97,21 @@ GalleryShell::GalleryShell(
         addChild(light);
     }
 
-	//Room1* room1 = new Room1(120.0f, 120.0f, 40.0f, t);
- //   room1->position = {-40.0f, 0.0f, 40.0f};
-	//addChild(room1);
+	Room1* room1 = new Room1(120.0f, 120.0f, 40.0f, t);
+    room1->position = {-40.0f, 0.0f, 40.0f};
+	addChild(room1);
 
- //   Room2* r2 = new Room2(120.0f, 120.0f, 40.0f, t);
- //   r2->position = { 40.0f, 0.0f,  40.0f };
- //   addChild(r2);
+    Room2* r2 = new Room2(120.0f, 120.0f, 40.0f, t);
+    r2->position = { 40.0f, 0.0f,  40.0f };
+    addChild(r2);
 
     Room3* r3 = new Room3(120.0f, 120.0f, 40.0f, t);
     r3->position = { -40.0f, 0.0f, -40.0f };
     addChild(r3);
 
-    /*Room4* r4 = new Room4(120.0f, 120.0f, 40.0f, t);
+    Room4* r4 = new Room4(120.0f, 120.0f, 40.0f, t);
     r4->position = { 40.0f, 0.0f, -40.0f };
-    addChild(r4);*/
+    addChild(r4);
 
     
 }
@@ -229,6 +233,7 @@ void GalleryShell::addGalleryLights(float galleryWidth, float galleryDepth, floa
         setupSpotLight(l, pos, center - pos);
         addChild(l);
     }
+
 }
 
 // ---------------- Helper to set common light properties ----------------

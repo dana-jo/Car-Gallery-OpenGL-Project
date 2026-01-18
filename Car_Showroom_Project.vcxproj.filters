@@ -33,6 +33,7 @@
     <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
     <ClCompile Include="src\scene\StickMan.cpp" />
+    <ClCompile Include="src\core\BoxCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -69,6 +70,8 @@
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
     <ClInclude Include="include\scene\StickMan.h" />
+    <ClInclude Include="include\core\BoxCollider.h" />
+    <ClInclude Include="include\core\Collision.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />

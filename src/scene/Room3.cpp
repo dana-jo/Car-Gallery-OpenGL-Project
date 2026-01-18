@@ -18,7 +18,7 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     Material* woodMat = new Material(new Texture("assets/textures/cardboard-texture.jpg"));
 
     // ===============================
-    // Tayo display platforms
+    //  display platforms
     // ===============================
     Cylinder* plate1 = new Cylinder(10.f, 1.4f, 32);
     plate1->position = { -9.0f, 0.7f, -9.0f };
@@ -31,7 +31,7 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     addChild(plate2);
 
     // ===============================
-    // Tayo buses
+    // Tayo bus
     // ===============================
     TayoBus* bus1 = new TayoBus();
     bus1->position = { -9.0f, 2.6f, -9.0f };
@@ -170,7 +170,14 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     auto* wallFront = new WallWithHole(30.0f, 40.0f, 0.01f, 20, 30);
     wallFront->position = { -5.0f, 20.0f, 20.0f };
     wallFront->setWallMaterial(wallMat);
+    wallFront->collider = new BoxCollider({ 
+        30.0f,   // width
+        40.0f,   // height
+        0.5f     // depth
+     });
+
     addChild(wallFront);
+
 
     auto* wallLeft = new WallWithHole(30.0f, 40.0f, 0.2f, 20, 30);
     wallLeft->position = { 20.0f, 20.0f, -5.0f };

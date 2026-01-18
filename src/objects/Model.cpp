@@ -60,6 +60,10 @@ MeshNode* Model::processMesh(aiMesh* mesh, const aiScene* scene)
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
 
+    glm::vec3 min(FLT_MAX);
+    glm::vec3 max(-FLT_MAX);
+
+
     for (unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
         Vertex v;
@@ -67,6 +71,9 @@ MeshNode* Model::processMesh(aiMesh* mesh, const aiScene* scene)
         v.position[0] = mesh->mVertices[i].x;
         v.position[1] = mesh->mVertices[i].y;
         v.position[2] = mesh->mVertices[i].z;
+
+        min = glm::min(min, glm::vec3(v.position[0], v.position[1], v.position[2]));
+        max = glm::max(max, glm::vec3(v.position[0], v.position[1], v.position[2]));
 
         if (mesh->HasNormals())
         {
@@ -121,6 +128,8 @@ MeshNode* Model::processMesh(aiMesh* mesh, const aiScene* scene)
             material = new Material(texture);
         }
     }
+    glm::vec3 size = max - min;
+    glm::vec3 center = (max + min) * 0.5f;
 
-    return new MeshNode(engineMesh, material);
+    return new MeshNode(engineMesh, material , size, center);
 }
