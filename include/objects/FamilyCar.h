@@ -15,23 +15,20 @@ public:
     void setCabinMaterial();
     void setWheelMaterial();
     void createFrontCabinPanel();
-    void createHeadlights();
+
 
 private:
-    // ????? ???????
     Box* body = nullptr;
     Box* cabin = nullptr;
     Cylinder* wheels[4] = { nullptr, nullptr, nullptr, nullptr };
     Polygon* cabinFront = nullptr;
 
-    // ????? ???????
-    float scale;
+    float scalec;
     float cabinWidth;
     float cabinHeight;
     float cabinLength;
-    float bodyLength; // <-- Add this line
+    float bodyLength;
 
-    // ??????
     Material* CabinmatFront = nullptr;
     Material* CabinmatBack = nullptr;
     Material* CabinmatRight = nullptr;

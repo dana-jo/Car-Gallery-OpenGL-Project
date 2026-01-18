@@ -7,37 +7,39 @@
 
 FamilyCar::FamilyCar()
 {
-    scale = 6.5f;
+    scalec = 6.5f;
 
-    float bodyLength = 4.2f * scale;
-    float bodyWidth = 1.8f * scale;
-    float bodyHeight = 0.6f * scale;
+    float bodyLength = 4.2f * scalec;
+    float bodyWidth = 1.8f * scalec;
+    float bodyHeight = 0.6f * scalec;
 
-    cabinLength = 3.5f * scale;
-    cabinHeight = 0.8f * scale;
+    cabinLength = 3.5f * scalec;
+    cabinHeight = 0.8f * scalec;
     cabinWidth = bodyWidth;
 
-    float wheelRadius = 0.35f * scale;
-    float wheelWidth = 0.25f * scale;
+    float wheelRadius = 0.35f * scalec;
+    float wheelWidth = 0.25f * scalec;
     float wheelY = wheelRadius;
 
-    bodymatFront = new Material(new Texture("assets/familyCar/frontBody.png"));
-    bodymatBack = new Material(new Texture("assets/familyCar/backBody.png"));
-    bodymatLeft = new Material(new Texture("assets/familyCar/leftBody.png"));
-    bodymatRight = new Material(new Texture("assets/familyCar/rightBody.png"));
+    bodymatFront = new Material(new Texture("assets/textures/familyCar/frontBody.png"));
+    bodymatBack = new Material(new Texture("assets/textures/familyCar/backBody.png"));
+    bodymatLeft = new Material(new Texture("assets/textures/familyCar/leftBody.png"));
+    bodymatRight = new Material(new Texture("assets/textures/familyCar/rightBody.png"));
 
-    CabinmatFront = new Material(new Texture("assets/familyCar/frontCabin.png"));
-    CabinmatBack = new Material(new Texture("assets/familyCar/backCabin.png"));
-    CabinmatLeft = new Material(new Texture("assets/familyCar/leftCabin.png"));
-    CabinmatRight = new Material(new Texture("assets/familyCar/rightCabin.png"));
+    CabinmatFront = new Material(new Texture("assets/textures/familyCar/frontCabin.png"));
+    CabinmatBack = new Material(new Texture("assets/textures/familyCar/backCabin.png"));
+    CabinmatLeft = new Material(new Texture("assets/textures/familyCar/leftCabin.png"));
+    CabinmatRight = new Material(new Texture("assets/textures/familyCar/rightCabin.png"));
 
     matRoof = new Material(new Texture("assets/familyCar/roof.png"));
     matRoof1 = new Material(new Texture("assets/familyCar/roof1.png"));
 
     matTransparente = new Material(new Texture("assets/familyCar/transparente.png"));
+    matRoof = new Material(new Texture("assets/textures/familyCar/roof.png"));
+    matTransparente = new Material(new Texture("assets/textures/familyCar/transparente.png"));
 
-    wheelMatSide = new Material(new Texture("assets/familyCar/wheelSide.png"));
-    wheelMatTop = new Material(new Texture("assets/familyCar/wheelTop.png"));
+    wheelMatSide = new Material(new Texture("assets/textures/familyCar/wheelSide.png"));
+    wheelMatTop = new Material(new Texture("assets/textures/familyCar/wheelTop.png"));
 
     body = new Box(bodyWidth, bodyHeight, bodyLength);
     body->position = { 0.0f, wheelY + bodyHeight * 0.5f, 0.0f };
@@ -110,7 +112,7 @@ void FamilyCar::setWheelMaterial()
 
 void FamilyCar::createFrontCabinPanel()
 {
-    float thickness = 0.02f * scale;
+    float thickness = 0.02f * scalec;
 
     cabinFront = new Polygon({
         {-cabinWidth * 0.50f, -cabinHeight * 0.5f},
