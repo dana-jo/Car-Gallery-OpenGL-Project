@@ -15,6 +15,7 @@ public:
     void setCabinMaterial();
     void setWheelMaterial();
     void createFrontCabinPanel();
+    void createHeadlights();
 
 private:
     // ????? ???????
