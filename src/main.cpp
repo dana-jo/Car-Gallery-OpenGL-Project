@@ -21,7 +21,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <Model.h>
-
+#include <assimp/version.h>
 
 // ------------------------------------------------------------
 // Simple camera values
@@ -41,6 +41,11 @@ glm::mat4 getProjection(int w, int h)
 
 int main()
 {
+    std::cout << "Assimp version: "
+        << aiGetVersionMajor() << "."
+        << aiGetVersionMinor() << "."
+        << aiGetVersionRevision() << std::endl;
+
     // --------------------------------------------------------
     // GLFW / OpenGL init
     // --------------------------------------------------------
@@ -68,31 +73,29 @@ int main()
     renderer.shader = shader;
 
     Texture blueTex("assets/textures/Purple.png");
-	Texture brickTex("assets/textures/window1.png");
+    Texture brickTex("assets/textures/window1.png");
 
     Material blueMat(&blueTex, { 1.0f, 1.0f });
-	Material brickMaterial(&brickTex, { 1.0f, 1.0f });
+    Material brickMaterial(&brickTex, { 1.0f, 1.0f });
    
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
-    /*Model model("assets/pine/scrubPine.obj");
-    model.position = { 0.0f, -1.0f, -3.0f };
-    model.scale = { 0.005f, 0.005f, 0.005f };*/
+
+    
 
     Skybox skybox({
-    "assets/skybox/right.jpg",
-    "assets/skybox/left.jpg",
-    "assets/skybox/top.jpg",
-    "assets/skybox/bottom.jpg",
-    "assets/skybox/front.jpg",
-    "assets/skybox/back.jpg"
-        });
+        "assets/skybox/right.jpg",
+        "assets/skybox/left.jpg",
+        "assets/skybox/top.jpg",
+        "assets/skybox/bottom.jpg",
+        "assets/skybox/front.jpg",
+        "assets/skybox/back.jpg"
+    });
 
-	World* world = new World();
+    World* world = new World();
 
     float lastTime = (float)glfwGetTime();
-
 
     while (!glfwWindowShouldClose(window))
     {
@@ -114,9 +117,9 @@ int main()
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
 
-		shader.setVec3("viewPos", camera.getPosition());
+        shader.setVec3("viewPos", camera.getPosition());
 
-		shader.setFloat("material_shininess", 32.0f);
+        shader.setFloat("material_shininess", 32.0f);
 
         shader.setVec3("dirLight.direction", glm::vec3(-0.2f, -1.0f, -0.1f));
         shader.setVec3("dirLight.ambient", glm::vec3(0.25f));
@@ -126,7 +129,8 @@ int main()
 
         renderer.setSceneRoot(world);
         renderer.submit(world);
-		//renderer.submit(&model);
+        //renderer.submit(&model);
+        //renderer.submit(&model2);
         world->update(dt, camera.getPosition());
 
         renderer.drawAll(camera.getPosition());
@@ -136,7 +140,6 @@ int main()
 
         glfwSwapBuffers(window);
     }
-
 
     glfwTerminate();
     return 0;

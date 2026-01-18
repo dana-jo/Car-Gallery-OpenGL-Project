@@ -15,3 +15,8 @@ obj/
 assets/pine
 # ===== Visual Studio temp folders =====
 Car_Show.*/
+assets/*
+!assets/.keep
+
+
+

@@ -11,6 +11,9 @@ public:
     glm::vec2 tiling = { 1.0f, 1.0f };
     float shininess = 32.0f;
 
+    glm::vec3 baseColor = glm::vec3(1.0f);
+    bool hasTexture = false;
+
     bool transparent = false;
 
     Material() = default;
