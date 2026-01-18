@@ -25,6 +25,10 @@
     <ClCompile Include="src\scene\Stretcher.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
+    <ClCompile Include="src\scene\Ambulance.cpp" />
+    <ClCompile Include="src\scene\CartoonCar.cpp" />
+    <ClCompile Include="src\scene\StickMan.cpp" />
+    <ClCompile Include="src\scene\TayoBus.cpp" />
     <ClCompile Include="src\scene\Room1.cpp" />
     <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
@@ -84,6 +88,10 @@
     <ClInclude Include="include\scene\Stretcher.h" />
     <ClInclude Include="include\objects\WallWithDoor.h" />
     <ClInclude Include="include\objects\WallWithHole.h" />
+    <ClInclude Include="include\scene\Ambulance.h" />
+    <ClInclude Include="include\scene\CartoonCar.h" />
+    <ClInclude Include="include\scene\StickMan.h" />
+    <ClInclude Include="include\scene\TayoBus.h" />
     <ClInclude Include="include\scene\Gallery.h" />
     <ClInclude Include="include\scene\GalleryShell.h" />
     <ClInclude Include="include\scene\MainCar.h" />

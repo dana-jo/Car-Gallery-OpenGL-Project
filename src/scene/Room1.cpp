@@ -7,6 +7,8 @@
 #include "../scene/FirstAidKit.h"
 #include "../scene/OxygenTank.h"
 #include "../scene/Stretcher.h"
+#include "../scene/Ambulance.h"
+
 
 Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 {
@@ -76,6 +78,13 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	platform->setMaterial(platMat);
 	addChild(platform);
 
+	//Ambulance
+	Ambulance* ambulance = new Ambulance();
+	ambulance->position = { -11.0f, 2.0f, 3.0f };
+	ambulance->rotation.y = glm::radians(180.0f);
+	ambulance->scale = { 12,12,12 };
+	addChild(ambulance);
+
 	//Shelf
 	Box* shelf = new Box(5.0f, 1.0f, 10.0f);
 	shelf->position = { 17.0f,5.6f, 5.0f };
@@ -86,8 +95,8 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	Material* monitorMat = new Material(new Texture("assets/textures/props/stretcher/monitor.png"), { 1,1 });
 	monitorMat->shininess = 100.0f;
 
-	Box* monitor = new Box(5.0f, 5.0f, 1.5f);
-	monitor->position = { 5.0f,15.0f, -20.0f };
+	Box* monitor = new Box(5.0f, 5.0f, 1.0f);
+	monitor->position = { 5.0f,15.0f, -19.0f };
 	monitor->setMaterial(wallMaterial);
 	monitor->setFaceMaterial(BoxFace::Front, monitorMat);
 	addChild(monitor);

@@ -32,6 +32,7 @@ Texture::Texture(const std::string& path, TextureWrap wrap)
     if (channels == 4) { format = GL_RGBA; hasAlpha = true; }
     else if (channels == 3) format = GL_RGB;
     else if (channels == 1) format = GL_RED;
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 

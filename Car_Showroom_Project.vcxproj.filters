@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
+    <ClCompile Include="src\scene\Ambulance.cpp" />
+    <ClCompile Include="src\scene\CartoonCar.cpp" />
+    <ClCompile Include="src\scene\TayoBus.cpp" />
     <ClCompile Include="src\scene\Room1.cpp" />
     <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
@@ -28,10 +32,14 @@
     <ClCompile Include="src\scene\Surroundings.cpp" />
     <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\scene\FirstAidKit.cpp" />
     <ClCompile Include="src\scene\OxygenTank.cpp" />
     <ClCompile Include="src\scene\Stretcher.cpp" />
+=======
+    <ClCompile Include="src\scene\StickMan.cpp" />
+>>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -45,6 +53,7 @@
     <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\objects\Box.h" />
     <ClInclude Include="include\objects\Cylinder.h" />
+    <ClInclude Include="include\objects\FamilyCar.h" />
     <ClInclude Include="include\objects\MeshNode.h" />
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
@@ -52,6 +61,9 @@
     <ClInclude Include="include\objects\Polygon.h" />
     <ClInclude Include="include\objects\WallWithDoor.h" />
     <ClInclude Include="include\objects\WallWithHole.h" />
+    <ClInclude Include="include\scene\Ambulance.h" />
+    <ClInclude Include="include\scene\CartoonCar.h" />
+    <ClInclude Include="include\scene\TayoBus.h" />
     <ClInclude Include="include\scene\Gallery.h" />
     <ClInclude Include="include\scene\GalleryShell.h" />
     <ClInclude Include="include\scene\MainCar.h" />
@@ -63,10 +75,14 @@
     <ClInclude Include="include\scene\Surroundings.h" />
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
+<<<<<<< HEAD
     <ClInclude Include="include\objects\FamilyCar.h" />
     <ClInclude Include="include\scene\FirstAidKit.h" />
     <ClInclude Include="include\scene\OxygenTank.h" />
     <ClInclude Include="include\scene\Stretcher.h" />
+=======
+    <ClInclude Include="include\scene\StickMan.h" />
+>>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
