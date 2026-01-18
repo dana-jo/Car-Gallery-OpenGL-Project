@@ -4,6 +4,7 @@
 #include "graphics/Material.h"
 #include "objects/WallWithDoor.h"
 #include <Model.h>
+#include "FamilyCar.h"
 
 Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
 {
@@ -62,5 +63,10 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
 
     addChild(car2);*/
 
+    FamilyCar* car = new FamilyCar();
+    car->position = { 0.0f, 0.0f, 0.0f };
+    car->rotation.y = glm::radians(-135.0f);
+    car->setCarMaterial();
+	addChild(car);
 
 }
