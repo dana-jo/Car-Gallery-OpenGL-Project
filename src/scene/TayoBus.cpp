@@ -1,59 +1,83 @@
 #include "scene/TayoBus.h"
 #include "../objects/Box.h"
+#include "../objects/Cylinder.h"
 #include "../graphics/Material.h"
 #include "../graphics/Texture.h"
 #include <glm/gtc/constants.hpp>
 
-TayoBus::TayoBus()
+TayoBus::TayoBus(float scale)
 {
-    // create car body
-    body = new Box(.9f, 0.5f, 0.5f);
-    body->position = { 0.0f, 0.25f, 0.0f };
+    // ===============================
+    // Base size (REAL bus size)
+    // ===============================
+    float baseScale = 15.0f;
+    float s = baseScale * scale;
+
+    float bodyW = 0.9f;
+    float bodyH = 0.5f;
+    float bodyD = 0.5f;
+
+    float wheelR = 0.1f;
+    float wheelW = 0.05f;
+
+    // ===============================
+    // Body
+    // ===============================
+    body = new Box(
+        bodyW * s,
+        bodyH * s,
+        bodyD * s
+    );
+
+    body->position = { 0.0f, bodyH * s * 0.5f, 0.0f };
     addChild(body);
 
-    // load textures
-    Texture* texRight = new Texture("assets/textures/tayo_face.jpg");
-    Texture* texBack = new Texture("assets/textures/tayo_left.png");
-    Texture* texLeft = new Texture("assets/textures/tayo_back.jpg");
-    Texture* texFront = new Texture("assets/textures/tayo_right.png");
-    Texture* texTop = new Texture("assets/textures/red.png");
-    //Texture* texTop = new Texture("assets/textures/formulaCar_top.jpg");
-    //Texture* texBottom = new Texture("assets/textures/green.png"); // REMOVE THIS
+    // ===============================
+    // Textures & Materials
+    // ===============================
+    Material* matFront = new Material(new Texture("assets/textures/tayo_right.png"));
+    Material* matBack = new Material(new Texture("assets/textures/tayo_left.png"));
+    Material* matLeft = new Material(new Texture("assets/textures/tayo_back.jpg"));
+    Material* matRight = new Material(new Texture("assets/textures/tayo_face.jpg"));
+    Material* matTop = new Material(new Texture("assets/textures/red.png"));
 
-    // create materials
-    Material* matFront = new Material(texFront);
-    Material* matBack = new Material(texBack);
-    Material* matLeft = new Material(texLeft);
-    Material* matRight = new Material(texRight);
-    Material* matTop = new Material(texTop);
-    //matBottom = new Material(texBottom);
-
-    // assign materials to faces
     body->setFaceMaterial(BoxFace::Front, matFront);
     body->setFaceMaterial(BoxFace::Back, matBack);
     body->setFaceMaterial(BoxFace::Left, matLeft);
     body->setFaceMaterial(BoxFace::Right, matRight);
     body->setFaceMaterial(BoxFace::Top, matTop);
-    //body->setFaceMaterial(BoxFace::Bottom, matBottom);
 
-    // wheels
-    float wheelR = 0.1f;
-    float wheelW = 0.05f;
+    // ===============================
+    // Wheels
+    // ===============================
+    Material* matWheel = new Material(
+        new Texture("assets/textures/black.png")
+    );
 
     for (int i = 0; i < 4; ++i)
     {
-        wheels[i] = new Cylinder(wheelR, wheelW, 20);
+        wheels[i] = new Cylinder(
+            wheelR * s,
+            wheelW * s,
+            20
+        );
 
-        float sx = (i < 2) ? -0.245f : 0.165f;     // left / right
-        float sz = (i % 2 == 0) ? 0.25f : -0.25f;  // front / back
+        float sx = (i < 2) ? -0.28f : 0.18f;
+        float sz = (i % 2 == 0) ? 0.48f : -0.48f;
 
-        wheels[i]->position = { sx, wheelR * 0.45f, sz };
+        wheels[i]->position = {
+            sx * bodyW * s ,
+            wheelR * s * 0.9f - 1.f,
+            sz * bodyD * s 
+        };
 
-        // rotate cylinder so it looks like a wheel
-        wheels[i]->rotation = { glm::half_pi<float>() ,0.0f,  0.0f};
+        wheels[i]->rotation = {
+            glm::half_pi<float>(),
+            0.0f,
+            0.0f
+        };
 
-        wheels[i]->setMaterial(new Material(new Texture("assets/textures/black.png")));
-
+        wheels[i]->setMaterial(matWheel);
         addChild(wheels[i]);
     }
 }

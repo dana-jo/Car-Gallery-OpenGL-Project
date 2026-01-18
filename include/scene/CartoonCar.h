@@ -1,14 +1,14 @@
 #pragma once
 #include "core/SceneNode.h"
-#include "objects/Cylinder.h"
+#include "graphics/Material.h"
 
 class Box;
 class Cylinder;
 
-class TayoBus : public SceneNode
+class CartoonCar : public SceneNode
 {
 public:
-    TayoBus(float scale = 1.0f);
+    CartoonCar(float scale = 1.0f, Material* faceMat = nullptr);
 
 private:
     Box* body;
