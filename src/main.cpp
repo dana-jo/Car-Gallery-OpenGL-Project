@@ -22,6 +22,7 @@
 
 #include <Model.h>
 #include <assimp/version.h>
+#include <FamilyCar.h>
 
 // ------------------------------------------------------------
 // Simple camera values
@@ -41,11 +42,7 @@ glm::mat4 getProjection(int w, int h)
 
 int main()
 {
-    std::cout << "Assimp version: "
-        << aiGetVersionMajor() << "."
-        << aiGetVersionMinor() << "."
-        << aiGetVersionRevision() << std::endl;
-
+    
     // --------------------------------------------------------
     // GLFW / OpenGL init
     // --------------------------------------------------------
@@ -93,7 +90,12 @@ int main()
         "assets/skybox/back.jpg"
     });
 
-    World* world = new World();
+	World* world = new World();
+    FamilyCar* car = new FamilyCar();
+    car->position = { 43.0f, 0.0f, 43.0f };
+    car->rotation.y = glm::radians(-135.0f);
+    car->setCarMaterial();
+    world->addChild(car);
 
     float lastTime = (float)glfwGetTime();
 
@@ -129,8 +131,7 @@ int main()
 
         renderer.setSceneRoot(world);
         renderer.submit(world);
-        //renderer.submit(&model);
-        //renderer.submit(&model2);
+        
         world->update(dt, camera.getPosition());
 
         renderer.drawAll(camera.getPosition());

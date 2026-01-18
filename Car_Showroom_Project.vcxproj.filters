@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\objects\FamilyCar.cpp" />
+    <ClCompile Include="src\objects\WallWithDoor.cpp" />
+    <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
+    <ClCompile Include="src\scene\Ambulance.cpp" />
+    <ClCompile Include="src\scene\CartoonCar.cpp" />
+    <ClCompile Include="src\scene\TayoBus.cpp" />
+    <ClCompile Include="src\scene\Room1.cpp" />
     <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
     <ClCompile Include="src\core\SceneNode.cpp" />
@@ -16,108 +23,52 @@
     <ClCompile Include="src\objects\Model.cpp" />
     <ClCompile Include="src\objects\Object.cpp" />
     <ClCompile Include="src\objects\Polygon.cpp" />
+    <ClCompile Include="src\scene\Gallery.cpp" />
+    <ClCompile Include="src\scene\GalleryShell.cpp" />
+    <ClCompile Include="src\scene\MainCar.cpp" />
+    <ClCompile Include="src\scene\Room2.cpp" />
+    <ClCompile Include="src\scene\Room3.cpp" />
+    <ClCompile Include="src\scene\Room4.cpp" />
+    <ClCompile Include="src\scene\Surroundings.cpp" />
+    <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
+    <ClCompile Include="src\scene\StickMan.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Box.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Cylinder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\SceneNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\Skybox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="src\objects\MeshNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\Model.cpp">
-=======
-    <ClCompile Include="src\objects\Polygon.cpp">
->>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\World.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Gallery.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Surroundings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\MainCar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\GalleryShell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Room1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Room2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Room3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Room4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\WallWithHolecpp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\objects\WallWithDoor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-=======
     <ClInclude Include="include\core\Camera.h" />
+    <ClInclude Include="include\core\LightNode.h" />
     <ClInclude Include="include\core\Renderer.h" />
     <ClInclude Include="include\core\Shader.h" />
+    <ClInclude Include="include\core\Units.h" />
     <ClInclude Include="include\graphics\Lights.h" />
     <ClInclude Include="include\graphics\Material.h" />
     <ClInclude Include="include\graphics\Skybox.h" />
     <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\objects\Box.h" />
     <ClInclude Include="include\objects\Cylinder.h" />
+    <ClInclude Include="include\objects\FamilyCar.h" />
     <ClInclude Include="include\objects\MeshNode.h" />
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
     <ClInclude Include="include\core\SceneNode.h" />
     <ClInclude Include="include\objects\Polygon.h" />
+    <ClInclude Include="include\objects\WallWithDoor.h" />
+    <ClInclude Include="include\objects\WallWithHole.h" />
+    <ClInclude Include="include\scene\Ambulance.h" />
+    <ClInclude Include="include\scene\CartoonCar.h" />
+    <ClInclude Include="include\scene\TayoBus.h" />
+    <ClInclude Include="include\scene\Gallery.h" />
+    <ClInclude Include="include\scene\GalleryShell.h" />
+    <ClInclude Include="include\scene\MainCar.h" />
+    <ClInclude Include="include\scene\Room1.h" />
+    <ClInclude Include="include\scene\Room2.h" />
+    <ClInclude Include="include\scene\Room3.h" />
+    <ClInclude Include="include\scene\Room4.h" />
+    <ClInclude Include="include\scene\RoomBase.h" />
+    <ClInclude Include="include\scene\Surroundings.h" />
     <ClInclude Include="include\utils\Mesh.h" />
+    <ClInclude Include="include\scene\World.h" />
+    <ClInclude Include="include\scene\StickMan.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
@@ -134,180 +85,33 @@
     <Image Include="..\..\Users\danaj\Documents\Textures\Red.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\White.png" />
     <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png" />
+    <Image Include="..\..\Users\danaj\Downloads\window1.png" />
+    <Image Include="assets\textures\brick.jpg" />
+    <Image Include="assets\textures\cracked-asphalt.jpg" />
+    <Image Include="assets\textures\door_frame.png" />
+    <Image Include="assets\textures\light-wooden-floor-background.jpg" />
+    <Image Include="assets\textures\modern-stone-wall.jpg" />
+    <Image Include="assets\textures\Purple.png" />
+    <Image Include="assets\textures\Red.png" />
     <Image Include="assets\textures\skybox\back.png" />
     <Image Include="assets\textures\skybox\bottom.png" />
     <Image Include="assets\textures\skybox\front.png" />
     <Image Include="assets\textures\skybox\left.png" />
     <Image Include="assets\textures\skybox\right.png" />
     <Image Include="assets\textures\skybox\top.png" />
->>>>>>> 0fcc93ba437bff74ff2efeb0e36432de9546dc73
+    <Image Include="assets\textures\white-building.jpg" />
+    <Image Include="assets\textures\White.png" />
+    <Image Include="assets\textures\window1.png" />
+    <Image Include="assets\textures\Yellow.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_shader.frag" />
     <None Include="shaders\basic_shader.vert" />
     <None Include="shaders\light_shader.frag" />
     <None Include="shaders\light_shader.vert" />
-<<<<<<< HEAD
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\core\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\utils\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Box.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Cylinder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\SceneNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Skybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\Lights.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="include\objects\MeshNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\Model.h">
-=======
-    <ClInclude Include="include\objects\Polygon.h">
->>>>>>> f339ec0d3b63efe9cbcb2b414aee4eaaab13941d
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\World.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\Gallery.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\Surroundings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\MainCar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\Units.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\GalleryShell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\core\LightNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\Room1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\Room2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\Room3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\Room4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\scene\RoomBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\WallWithHole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\objects\WallWithDoor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Red.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\White.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Yellow.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Blue.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Green.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\Purple.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\brick.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Documents\Textures\blue_transparent.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\back.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\bottom.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\front.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\left.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\right.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Downloads\top.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\back.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\bottom.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\front.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\left.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\right.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\skybox\top.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\Users\danaj\Downloads\window1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-=======
     <None Include="shaders\mesh_shader.frag" />
     <None Include="shaders\mesh_shader.vert" />
     <None Include="shaders\skybox.frag" />
     <None Include="shaders\skybox.vert" />
->>>>>>> 0fcc93ba437bff74ff2efeb0e36432de9546dc73
   </ItemGroup>
 </Project>

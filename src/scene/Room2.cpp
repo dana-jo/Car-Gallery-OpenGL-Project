@@ -55,12 +55,12 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
     door2->setDoorMaterial(doorMaterial);
     addChild(door2);
 
-    Model* car2 = new Model("assets/cicada_retro_cartoon_car_gltf/scene.gltf");
+    /*Model* car2 = new Model("assets/cicada_retro_cartoon_car_gltf/scene.gltf");
     car2->scale = { 0.02f, 0.02f, 0.02f };
     car2->position = { 0.0f, 5.0f, 0.0f };
     car2->rotation.x = glm::radians(-90.0f);
 
-    addChild(car2);
+    addChild(car2);*/
 
 
 }
