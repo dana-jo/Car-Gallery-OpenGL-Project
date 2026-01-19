@@ -63,12 +63,12 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
 
     // BIG
     Box* bigFrame = new Box(bigW + 1.0f, bigH + 1.0f, 0.4f);
-    bigFrame->position = { -5.0f, 18.0f, 18.75f };
+    bigFrame->position = { -5.0f, 18.0f - 3.f, 18.75f };
     bigFrame->setMaterial(woodMat);
     addChild(bigFrame);
 
     Box* bigPic = new Box(bigW, bigH, bigD);
-    bigPic->position = { -5.0f, 18.0f, 18.8f };
+    bigPic->position = { -5.0f, 18.0f - 3.f, 18.8f };
     bigPic->rotation.y = glm::radians(180.0f);
     bigPic->setMaterial(plate1Mat);
     bigPic->setFaceMaterial(BoxFace::Front, bigMat);
@@ -76,24 +76,24 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
 
     // LEFT
     Box* leftFrame = new Box(smallW + 0.6f, smallH + 0.6f, 0.35f);
-    leftFrame->position = { -13.0f, 18.0f, 18.75f };
+    leftFrame->position = { -13.0f, 18.0f - 3.f, 18.75f };
     leftFrame->setMaterial(woodMat);
     addChild(leftFrame);
 
     Box* leftPic = new Box(smallW, smallH, smallD);
-    leftPic->position = { -13.0f, 18.0f, 18.8f };
+    leftPic->position = { -13.0f, 18.0f - 3.f, 18.8f };
     leftPic->rotation.y = glm::radians(180.0f);
     leftPic->setMaterial(leftMat);
     addChild(leftPic);
 
     // RIGHT
     Box* rightFrame = new Box(smallW + 0.6f, smallH + 0.6f, 0.35f);
-    rightFrame->position = { 3.0f, 18.0f, 18.75f };
+    rightFrame->position = { 3.0f, 18.0f - 3.f , 18.75f };
     rightFrame->setMaterial(woodMat);
     addChild(rightFrame);
 
     Box* rightPic = new Box(smallW, smallH, smallD);
-    rightPic->position = { 3.0f, 18.0f, 18.8f };
+    rightPic->position = { 3.0f, 18.0f - 3.f , 18.8f };
     rightPic->rotation.y = glm::radians(180.0f);
     rightPic->setMaterial(rightMat);
     addChild(rightPic);
@@ -144,19 +144,21 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     stickyMan->rotation.y = glm::radians(90.0f);
     addChild(stickyMan);
 
+
     // ===============================
     // Floor (Gazon carpet)
     // ===============================
     Material* gazon1Mat = new Material(new Texture("assets/textures/gazon.jpg"), { 8.0f, 6.0f });
     Material* gazon2Mat = new Material(new Texture("assets/textures/gazon.jpg"), { 6.0f, 2.0f });
 
-    Box* floor1 = new Box(gWidth - 80.f, 0.2f, gDepth - 0.25f * gDepth);
-    floor1->position = { 0.0f, 0.35f, -0.12f * gDepth };
+
+    Box* floor1 = new Box(gWidth - 80.f, 0.2f, gDepth - 0.25f * gDepth - 60.f);
+    floor1->position = { 0.0f, 0.35f, -0.12f * gDepth + 9.f};
     floor1->setMaterial(gazon1Mat);
     addChild(floor1);
 
-    Box* floor2 = new Box(0.75f * (gWidth - 80.f), 0.2f, 0.322f * (gDepth - 0.25f * gDepth));
-    floor2->position = { -5.f, 0.35f, 0.375f * gDepth };
+    Box* floor2 = new Box(0.75f * (gWidth - 80.f), 0.2f, 0.122f * (gDepth - 0.25f * gDepth) - 0.7f);
+    floor2->position = { -5.f, 0.35f, 0.1f * gDepth + 2.7f};
     floor2->setMaterial(gazon2Mat);
     addChild(floor2);
 

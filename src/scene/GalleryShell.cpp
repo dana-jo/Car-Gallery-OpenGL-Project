@@ -67,21 +67,21 @@ GalleryShell::GalleryShell(
     addGalleryLights(width, depth, wallHeight);
 
     // ---------- ROOMS ----------
-    Room1* room1 = new Room1(width, wallHeight, depth, t);
+    /*Room1* room1 = new Room1(width, wallHeight, depth, t);
     room1->position = { -width / 3.0f, 0.0f, depth / 3.0f };
-    addChild(room1);
+    addChild(room1);*/
 
-    Room2* r2 = new Room2(width, wallHeight, depth, t);
+    /*Room2* r2 = new Room2(width, wallHeight, depth, t);
     r2->position = { width / 3.0f, 0.0f, depth / 3.0f };
-    addChild(r2);
+    addChild(r2);*/
 
     Room3* r3 = new Room3(width, wallHeight, depth, t);
     r3->position = { -width / 3.0f, 0.0f, -depth / 3.0f };
     addChild(r3);
 
-    Room4* r4 = new Room4(width, wallHeight, depth, t);
+    /*Room4* r4 = new Room4(width, wallHeight, depth, t);
     r4->position = { width / 3.0f, 0.0f, -depth / 3.0f };
-    addChild(r4);
+    addChild(r4);*/
 
 	Model* securityCam = new Model("assets/models/security_camera_01_1k/security_camera_01_1k.fbx");
 	securityCam->scale = { 8.0f, 8.0f, 8.0f };
