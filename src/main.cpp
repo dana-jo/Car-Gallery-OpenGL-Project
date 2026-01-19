@@ -23,6 +23,7 @@
 #include <Model.h>
 #include <assimp/version.h>
 #include <FamilyCar.h>
+#include "AudioSystem.h"
 
 // ------------------------------------------------------------
 // Simple camera values
@@ -50,6 +51,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    AudioSystem::init();
 
     GLFWwindow* window = glfwCreateWindow(1280, 720, "Transparency Test", nullptr, nullptr);
     glfwMakeContextCurrent(window);
@@ -91,6 +93,8 @@ int main()
     });
 
 	World* world = new World();
+
+    //AudioSystem::playSound("assets/audios/oiia-oiia-spinning-cat.wav"); to test it if u want
 
     float lastTime = (float)glfwGetTime();
 
@@ -151,5 +155,6 @@ int main()
     }
 
     glfwTerminate();
+    AudioSystem::shutdown();
     return 0;
 }

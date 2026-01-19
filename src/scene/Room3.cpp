@@ -33,7 +33,7 @@ Room3::Room3(float gWidth, float gHeight, float gDepth, float g)
     // ===============================
     // Tayo bus
     // ===============================
-    TayoBus* bus1 = new TayoBus();
+    TayoBus* bus1 = new TayoBus(1.25f);
     bus1->position = { -9.0f, 2.6f, -9.0f };
     bus1->rotation.y = glm::radians(-65.0f);
     addChild(bus1);
