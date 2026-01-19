@@ -83,4 +83,18 @@ Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
 
     // Attach to shelf, not room
     shelf->addChild(miniCar);
+
+    Model* teddy = new Model("assets/models/wii_-_mr_beans_wacky_world_-_teddy/scene.gltf");
+    teddy->scale = { 6.0f,6.0f, 6.0f };
+
+    teddy->position = {
+        -13.0f,
+        0.3f,
+        -10.0f
+    };
+
+    teddy->rotation.x = glm::radians(-90.0f);
+    teddy->rotation.z = glm::radians(-10.0f);
+
+    addChild(teddy);
 }

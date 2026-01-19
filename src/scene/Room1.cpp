@@ -8,6 +8,7 @@
 #include "../scene/OxygenTank.h"
 #include "../scene/Stretcher.h"
 #include "../scene/Ambulance.h"
+#include <Model.h>
 
 
 Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
@@ -65,8 +66,8 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 	// Platform 
 	Material* platMat = new Material(new Texture("assets/textures/props/stretcher/platform.png"), { 1,1 });
 
-	Box* platform = new Box(18.0f, 1.0f, 28.0f);
-	platform->position = {-11.0f, 0.6f, 7.0f };
+	Box* platform = new Box(23.0f, 1.0f, 28.0f);
+	platform->position = {-7.0f, 0.6f, 6.0f };
 	platform->setMaterial(platMat);
 	addChild(platform);
 
@@ -107,9 +108,17 @@ Room1::Room1(float gWidth, float gHeight, float gDepth, float g)
 
 	// Stretcher
 	auto* stretcher = new Stretcher();
-	stretcher->position = { 8.0f, 1.0f, 6.0f };
+	stretcher->position = { 10.0f, 1.0f, 6.0f };
 	stretcher->rotation.y = glm::radians(25.0f);
 	stretcher->scale = { 0.8,0.8,0.8 };
 	addChild(stretcher);
+
+	Model* ambulanceModel = new Model("assets/models/ambulance/scene.gltf");
+	ambulanceModel->position = { 0.0f, 5.0f, 6.0f };
+	ambulanceModel->rotation.y = glm::radians(180.0f);
+	ambulanceModel->rotation.x = glm::radians(90.0f);
+	ambulanceModel->rotation.z = glm::radians(90.0f);
+	ambulanceModel->scale = { 7.0f,7.0f,7.0f };
+	addChild(ambulanceModel);
 
 }
