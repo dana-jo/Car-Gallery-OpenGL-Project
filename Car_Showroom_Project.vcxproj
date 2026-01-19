@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="carDoor.cpp" />
+    <ClCompile Include="ZZZ.cpp" />
     <ClCompile Include="src\core\AudioSystem.cpp" />
     <ClCompile Include="src\core\BoxCollider.cpp" />
     <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\scene\FirstAidKit.cpp" />
+    <ClCompile Include="src\scene\oiiaioooooiaiCat.cpp" />
     <ClCompile Include="src\scene\OxygenTank.cpp" />
     <ClCompile Include="src\scene\Stretcher.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
@@ -70,6 +73,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Downloads\miniaudio-master\miniaudio-master\miniaudio.h" />
     <ClInclude Include="include\core\AudioSystem.h" />
+    <ClInclude Include="carDoor.h" />
     <ClInclude Include="include\core\Camera.h" />
     <ClInclude Include="include\core\BoxCollider.h" />
     <ClInclude Include="include\core\Collision.h" />
@@ -89,6 +93,7 @@
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
     <ClInclude Include="include\core\SceneNode.h" />
+    <ClInclude Include="include\scene\oiiaioooooiaiCat.h" />
     <ClInclude Include="include\scene\OxygenTank.h" />
     <ClInclude Include="include\objects\Polygon.h" />
     <ClInclude Include="include\scene\Stretcher.h" />
@@ -109,6 +114,7 @@
     <ClInclude Include="include\scene\Surroundings.h" />
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
+    <ClInclude Include="ZZZ.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />

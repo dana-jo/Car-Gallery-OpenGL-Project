@@ -16,6 +16,11 @@ public:
     glm::vec3 position{ -60.0f, 20.0f, 100.0f };
     BoxCollider* collider = nullptr; // camera collider
 
+    // inside the car stuff
+    void toggleInsideCar(const glm::vec3& seatPos, float seatYaw, float seatPitch);
+    bool isInsideCar() const { return insideCar; }
+
+
 private:
     GLFWwindow* window;
 
@@ -33,6 +38,13 @@ private:
     float lastY = 360.0f;
 
     void updateMouse();
+    void updateKeyboard(float dt);
+
+    // inside the car stuff 
+    bool insideCar = false;
+    glm::vec3 savedPosition;
+    float savedYaw;
+    float savedPitch;
     void updateKeyboard(float dt, const std::vector<SceneNode*>& worldObjects);
     bool canMove(const glm::vec3& newPos, const std::vector<SceneNode*>& worldObjects);
 };

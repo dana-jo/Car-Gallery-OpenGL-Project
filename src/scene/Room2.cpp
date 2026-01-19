@@ -6,6 +6,7 @@
 #include "objects/Cylinder.h"
 #include <Model.h>
 #include "FamilyCar.h"
+#include <scene/oiiaioooooiaiCat.h>
 
 Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
 {
@@ -69,7 +70,6 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
 
 
 
-
     FamilyCar* car = new FamilyCar();
     car->scale = { 0.7f, 0.7f, 0.7f };
     car->position = { -10.0f, standHeight, 8.0f };
@@ -114,6 +114,10 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
     vase->scale = { 1.5f, 1.5f, 1.5f };
     vase->position = { 0.0f, 0.0f, 0.8f };
     table->addChild(vase);
+
+	OiiaioooooiaiCat* oiiaioooooiaiCat = new OiiaioooooiaiCat();
+    oiiaioooooiaiCat->position = { -10.0f, 0.5f, -5.0f };
+    addChild(oiiaioooooiaiCat);
 
     Model* frame = new Model("assets/models/hanging_picture_frame_02_1k/hanging_picture_frame_02_1k.fbx");
     frame->scale = { 14.0f, 14.0f, 14.0f };
