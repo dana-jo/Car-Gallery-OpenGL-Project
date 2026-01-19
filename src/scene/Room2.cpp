@@ -6,6 +6,7 @@
 #include "objects/Cylinder.h"
 #include <Model.h>
 #include "FamilyCar.h"
+#include <scene/oiiaioooooiaiCat.h>
 
 Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
 {
@@ -35,7 +36,7 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
 
     // Back wall (faces -Z)
     WallWithHole* wallBack = new WallWithHole(wallW, wallH, depth, winW, winH);
-    wallBack->position = { +5.0f, wallH/2.0f, -20.0f };
+    wallBack->position = { +5.0f, wallH / 2.0f, -20.0f };
     wallBack->setWallMaterial(wallMaterial);
     wallBack->setWindowMaterial(wallMaterial);
     addChild(wallBack);
@@ -43,7 +44,7 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
     // Right wall (faces +X)
     WallWithHole* wallRight = new WallWithHole(wallW, wallH, depth, winW, winH);
 
-    wallRight->position = { -20.0f, wallH/2.0f, 5.0f };
+    wallRight->position = { -20.0f, wallH / 2.0f, 5.0f };
     wallRight->rotation.y = glm::radians(90.0f);
 
     wallRight->setWallMaterial(wallMaterial);
@@ -68,21 +69,22 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
     float standHeight = 0.7f;
 
 
-    
 
     FamilyCar* car = new FamilyCar();
     car->scale = { 0.7f, 0.7f, 0.7f };
     car->position = { -10.0f, standHeight, 8.0f };
     car->rotation.y = glm::radians(-150.0f);
     car->setCarMaterial();
-	addChild(car);
+    addChild(car);
 
-	Model* carModel = new Model("assets/models/cicada_retro_cartoon_car_gltf/scene.gltf");
-	carModel->scale = { 0.13f, 0.13f, 0.13f };
-	carModel->position = { 5.0f, standHeight, 0.0f };
-	carModel->rotation.x = glm::radians(-90.0f);
-	carModel->rotation.z = glm::radians(-50.0f);
-	addChild(carModel);
+    Model* carModel = new Model("assets/models/cicada_retro_cartoon_car_gltf/scene.gltf");
+    carModel->scale = { 0.13f, 0.13f, 0.13f };
+    carModel->position = { 5.0f, standHeight, 0.0f };
+    carModel->rotation.x = glm::radians(-90.0f);
+    carModel->rotation.z = glm::radians(-50.0f);
+    addChild(carModel);
+    //carModel->enableBoxCollider();
+
 
     Cylinder* carStand = new Cylinder(standRadius, standHeight, 32);
 
@@ -108,22 +110,26 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
     //table->rotation.y = glm::radians(25.0f);
     addChild(table);
 
-	Model* vase = new Model("assets/models/ceramic_vase_01_1k/ceramic_vase_01_1k.fbx");
-	vase->scale = { 1.5f, 1.5f, 1.5f };
-	vase->position = { 0.0f, 0.0f, 0.8f };
-	table->addChild(vase);
+    Model* vase = new Model("assets/models/ceramic_vase_01_1k/ceramic_vase_01_1k.fbx");
+    vase->scale = { 1.5f, 1.5f, 1.5f };
+    vase->position = { 0.0f, 0.0f, 0.8f };
+    table->addChild(vase);
 
-	Model* frame = new Model("assets/models/hanging_picture_frame_02_1k/hanging_picture_frame_02_1k.fbx");
-	frame->scale = { 14.0f, 14.0f, 14.0f };
-	frame->position = { 3.0f, wallH * 0.6f, -19.7f };
-	frame->rotation.y = glm::radians(180.0f);
-	frame->rotation.x = glm::radians(-90.0f);
-	addChild(frame);
+	OiiaioooooiaiCat* oiiaioooooiaiCat = new OiiaioooooiaiCat();
+    oiiaioooooiaiCat->position = { -10.0f, 0.5f, -5.0f };
+    addChild(oiiaioooooiaiCat);
 
-	Model* chandelier = new Model("assets/models/Chandelier_03_1k/Chandelier_03_1k.fbx");
+    Model* frame = new Model("assets/models/hanging_picture_frame_02_1k/hanging_picture_frame_02_1k.fbx");
+    frame->scale = { 14.0f, 14.0f, 14.0f };
+    frame->position = { 3.0f, wallH * 0.6f, -19.7f };
+    frame->rotation.y = glm::radians(180.0f);
+    frame->rotation.x = glm::radians(-90.0f);
+    addChild(frame);
+
+    Model* chandelier = new Model("assets/models/Chandelier_03_1k/Chandelier_03_1k.fbx");
     chandelier->scale = { 8.0f, 8.0f, 8.0f };
     chandelier->position = { 0.0f, wallH - 2.0f, 0.0f };
     chandelier->rotation.x = glm::radians(-90.0f);
-	addChild(chandelier);
+    addChild(chandelier);
 
 }

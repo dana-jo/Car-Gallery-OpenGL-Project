@@ -265,6 +265,14 @@ Surroundings::Surroundings(float gallerySize, float t)
     addChild(tR3);
 
 
+	//--------------- sheep -----------------
+	Model* sheep1 = new Model("assets/models/chibi_cute_sheep/scene.gltf");
+	sheep1->position = { -40.0f, 5.0f, galleryHalf + pavementW + 30.0f };
+	sheep1->scale = { 2.5f, 3.f, 2.5f };
+	sheep1->rotation.y = glm::radians(-120.0f);
+	addChild(sheep1);
+	sheep1->enableBoxCollider();
+
 }
 
 Surroundings::~Surroundings() = default;

@@ -3,6 +3,7 @@
 #include "graphics/Texture.h"
 #include "graphics/Material.h"
 #include "objects/WallWithDoor.h"
+#include "../../ZZZ.h"
 #include "Model.h"
 
 Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
@@ -97,4 +98,11 @@ Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
     teddy->rotation.z = glm::radians(-10.0f);
 
     addChild(teddy);
+
+    car = new ZZZ();
+    car->position = { 7, 4, 10 };
+    car->scale = {3, 3, 3};
+    car->rotation.y = glm::radians(-60.0f);
+    addChild(car);
+
 }

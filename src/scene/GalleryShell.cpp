@@ -79,7 +79,7 @@ GalleryShell::GalleryShell(
     r3->position = { -width / 3.0f, 0.0f, -depth / 3.0f };
     addChild(r3);
 
-    Room4* r4 = new Room4(width, wallHeight, depth, t);
+    r4 = new Room4(width, wallHeight, depth, t);
     r4->position = { width / 3.0f, 0.0f, -depth / 3.0f };
     addChild(r4);
 
