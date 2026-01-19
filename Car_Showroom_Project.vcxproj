@@ -22,6 +22,7 @@
     <ClCompile Include="src\core\BoxCollider.cpp" />
     <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\scene\FirstAidKit.cpp" />
+    <ClCompile Include="src\scene\oiiaioooooiaiCat.cpp" />
     <ClCompile Include="src\scene\OxygenTank.cpp" />
     <ClCompile Include="src\scene\Stretcher.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
     <ClInclude Include="include\core\SceneNode.h" />
+    <ClInclude Include="include\scene\oiiaioooooiaiCat.h" />
     <ClInclude Include="include\scene\OxygenTank.h" />
     <ClInclude Include="include\objects\Polygon.h" />
     <ClInclude Include="include\scene\Stretcher.h" />
