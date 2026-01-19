@@ -22,6 +22,7 @@ public:
     virtual void draw(class Shader& shader) override;
 
 private:
+    float width, height, depth;
     Mesh* mesh = nullptr;
     std::array<Material*, 6> faceMaterials = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
     unsigned int indicesPerFace = 6;

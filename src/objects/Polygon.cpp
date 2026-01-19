@@ -16,6 +16,29 @@ Polygon::Polygon(const std::vector<glm::vec2>& vertices2D, float depth)
     if (!validate())
         throw std::runtime_error("Invalid polygon");
 
+    // ---------- COLLIDER ----------
+    glm::vec2 min(FLT_MAX), max(-FLT_MAX);
+    for (auto& p : polygon2D)
+    {
+        min = glm::min(min, p);
+        max = glm::max(max, p);
+    }
+
+    glm::vec2 size2D = max - min;
+
+    collider = new BoxCollider({
+        size2D.x,
+        size2D.y,
+        depth
+        });
+
+    // collider is centered on polygon
+    collider->offset = glm::vec3(
+        (min.x + max.x) * 0.5f,
+        (min.y + max.y) * 0.5f,
+        0.0f
+    );
+
     triangulate();          // fills indices2D
     buildMesh(polygon2D, depth);
 }

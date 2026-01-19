@@ -1,45 +1,68 @@
 #include "Camera.h"
+#include "Collision.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 Camera::Camera(GLFWwindow* win)
     : window(win)
 {
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);  // Hide and capture the cursor GLFW_CURSOR_DISABLED
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
-void Camera::update()
+// ---------------- Update called each frame ----------------
+void Camera::update(const std::vector<SceneNode*>& worldObjects)
 {
-    static float lastTime = glfwGetTime();
-    float current = glfwGetTime();
+    static float lastTime = (float)glfwGetTime();
+    float current = (float)glfwGetTime();
     float dt = current - lastTime;
     lastTime = current;
 
-    updateKeyboard(dt);
+    updateKeyboard(dt, worldObjects);
     updateMouse();
 }
 
-void Camera::updateKeyboard(float dt)
+// ---------------- Check if a position is free ----------------
+bool Camera::canMove(const glm::vec3& newPos, const std::vector<SceneNode*>& worldObjects)
 {
-    float velocity = speed * dt;
+    SceneNode camNode;
+    camNode.position = newPos;
+    camNode.collider = collider;
 
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        position += velocity * front;
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        position -= velocity * front;
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        position -= velocity * right;
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        position += velocity * right;
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
-		position += velocity * up;
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		position -= velocity * up;
-    //position.x = glm::clamp(position.x, -2.5f, 2.5f);
-    //position.y = glm::clamp(position.y, -5.5f, 5.5f);
-    //position.z = glm::clamp(position.z, 0.f, 1.5f);
+    for (SceneNode* obj : worldObjects)
+    {
+        if (checkCollisionRecursive(&camNode, obj))
+            return false;
+    }
 
+    return true;
 }
 
+// ---------------- Keyboard input with per-axis collision ----------------
+void Camera::updateKeyboard(float dt, const std::vector<SceneNode*>& worldObjects)
+{
+    glm::vec3 delta(0.0f);
+    float velocity = speed * dt;
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) delta += front * velocity;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) delta -= front * velocity;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) delta -= right * velocity;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) delta += right * velocity;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS) delta += up * velocity;
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) delta -= up * velocity;
+
+    // Move X separately
+    glm::vec3 testPosX = position + glm::vec3(delta.x, 0, 0);
+    if (canMove(testPosX, worldObjects)) position.x = testPosX.x;
+
+    // Move Y separately
+    glm::vec3 testPosY = position + glm::vec3(0, delta.y, 0);
+    if (canMove(testPosY, worldObjects)) position.y = testPosY.y;
+
+    // Move Z separately
+    glm::vec3 testPosZ = position + glm::vec3(0, 0, delta.z);
+    if (canMove(testPosZ, worldObjects)) position.z = testPosZ.z;
+}
+
+// ---------------- Mouse look ----------------
 void Camera::updateMouse()
 {
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) != GLFW_PRESS)
@@ -82,7 +105,7 @@ void Camera::updateMouse()
     right = glm::normalize(glm::cross(front, up));
 }
 
-
+// ---------------- View matrix ----------------
 glm::mat4 Camera::getView() const
 {
     return glm::lookAt(position, position + front, up);

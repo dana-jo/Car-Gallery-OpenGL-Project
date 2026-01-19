@@ -20,6 +20,8 @@ public:
 
 private:
     Mesh* mesh = nullptr;
+    float radius, height;
+
     unsigned int sideIndexCount = 0;
     unsigned int topIndexCount = 0;
     unsigned int bottomIndexCount = 0;

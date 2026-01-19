@@ -39,7 +39,11 @@
     <ClCompile Include="src\scene\Stretcher.cpp" />
 =======
     <ClCompile Include="src\scene\StickMan.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="src\core\BoxCollider.cpp" />
+=======
 >>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
+>>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -82,7 +86,12 @@
     <ClInclude Include="include\scene\Stretcher.h" />
 =======
     <ClInclude Include="include\scene\StickMan.h" />
+<<<<<<< HEAD
+    <ClInclude Include="include\core\BoxCollider.h" />
+    <ClInclude Include="include\core\Collision.h" />
+=======
 >>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
+>>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />

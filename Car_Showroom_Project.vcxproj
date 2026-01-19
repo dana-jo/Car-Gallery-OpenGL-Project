@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\BoxCollider.cpp" />
     <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\scene\FirstAidKit.cpp" />
     <ClCompile Include="src\scene\OxygenTank.cpp" />
@@ -67,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
+    <ClInclude Include="include\core\BoxCollider.h" />
+    <ClInclude Include="include\core\Collision.h" />
     <ClInclude Include="include\core\LightNode.h" />
     <ClInclude Include="include\core\Renderer.h" />
     <ClInclude Include="include\core\Shader.h" />

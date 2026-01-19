@@ -37,6 +37,7 @@ FamilyCar::FamilyCar()
     matTransparente = new Material(new Texture("assets/familyCar/transparente.png"));
     matRoof = new Material(new Texture("assets/textures/familyCar/roof.png"));
     matTransparente = new Material(new Texture("assets/textures/familyCar/transparente.png"));
+    matRoof1 = new Material(new Texture("assets/textures/familyCar/roof1.png"));
 
     wheelMatSide = new Material(new Texture("assets/textures/familyCar/wheelSide.png"));
     wheelMatTop = new Material(new Texture("assets/textures/familyCar/wheelTop.png"));

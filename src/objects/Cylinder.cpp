@@ -6,7 +6,10 @@
 #include <glad/glad.h>
 
 Cylinder::Cylinder(float r, float h, int segments)
+    : radius(r), height(h)
 {
+    collider = new BoxCollider({ 2*r,h, 2*r });
+
     float half = h / 2.0f;
     std::vector<Vertex> vertices;
     std::vector<unsigned int> indices;
