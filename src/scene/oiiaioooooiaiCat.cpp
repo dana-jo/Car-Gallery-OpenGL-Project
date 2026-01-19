@@ -1,5 +1,6 @@
 #include "scene/OiiaioooooiaiCat.h"
 #include <glm/gtc/constants.hpp>
+#include <AudioSystem.h>
 
 OiiaioooooiaiCat::OiiaioooooiaiCat()
 {
@@ -18,10 +19,18 @@ void OiiaioooooiaiCat::update(float dt, const glm::vec3& cameraPos)
     float dist = glm::distance(catWorldPosition, cameraPos);
 
     if (dist < 10.0f)
+    {
         rotation.y += rotationSpeed * dt;
+        if(!isRotating) AudioSystem::playMusic("assets/audios/oiia-oiia-spinning-cat.wav", true);
 
- /*   if (rotation.y > glm::two_pi<float>())
-        rotation.y -= glm::two_pi<float>();*/
+		isRotating = true;
+    }
+    else
+    {
+		isRotating = false;
+		AudioSystem::stopMusic();
+    }
+
 
     SceneNode::update(dt, cameraPos);
 }

@@ -12,4 +12,5 @@ public:
 private:
     Model* catModel;
     float rotationSpeed;
+	bool isRotating = false;
 };
