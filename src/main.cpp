@@ -90,6 +90,17 @@ int main()
         "assets/skybox/back.jpg"
     });
 
+    Skybox nightSkybox({
+        "assets/night_skybox/right.jpg",
+        "assets/night_skybox/left.jpg",
+        "assets/night_skybox/top.jpg",
+        "assets/night_skybox/bottom.jpg",
+        "assets/night_skybox/front.jpg",
+        "assets/night_skybox/back.jpg"
+        });
+    bool isNight = false;
+    bool keyPressed = false;
+
 	World* world = new World();
 
     float lastTime = (float)glfwGetTime();
@@ -104,7 +115,15 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
-
+        if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS && !keyPressed)
+        {
+            isNight = !isNight;
+            keyPressed = true;
+        }
+        if (glfwGetKey(window, GLFW_KEY_N) == GLFW_RELEASE)
+        {
+            keyPressed = false;
+        }
         std::vector<SceneNode*> worldObjects;
         world->collectColliders(worldObjects);
         camera.update(worldObjects);
@@ -145,7 +164,10 @@ int main()
         renderer.drawAll(camera.getPosition());
         renderer.clear();
 
-        skybox.draw(view, projection);
+        if (isNight)
+            nightSkybox.draw(view, projection);
+        else
+            skybox.draw(view, projection);
 
         glfwSwapBuffers(window);
     }
