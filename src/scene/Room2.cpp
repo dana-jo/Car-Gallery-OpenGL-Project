@@ -83,6 +83,8 @@ Room2::Room2(float gWidth, float gHeight, float gDepth, float g)
     carModel->rotation.x = glm::radians(-90.0f);
     carModel->rotation.z = glm::radians(-50.0f);
     addChild(carModel);
+    //carModel->enableBoxCollider();
+
 
     Cylinder* carStand = new Cylinder(standRadius, standHeight, 32);
 

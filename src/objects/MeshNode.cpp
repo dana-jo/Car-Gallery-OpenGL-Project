@@ -9,6 +9,8 @@ MeshNode::MeshNode(Mesh* m, Material* mat,
     if (material && material->transparent)
         transparent = true;
     //collider = new BoxCollider(colliderSize, colliderCenter);
+    localMin = colliderCenter - colliderSize * 0.5f;
+    localMax = colliderCenter + colliderSize * 0.5f;
 }
 
 MeshNode::~MeshNode()
