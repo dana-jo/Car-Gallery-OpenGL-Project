@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="carDoor.cpp" />
+    <ClCompile Include="ZZZ.cpp" />
     <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
@@ -59,6 +61,7 @@
     <None Include="shaders\skybox.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="carDoor.h" />
     <ClInclude Include="include\core\Camera.h" />
     <ClInclude Include="include\core\LightNode.h" />
     <ClInclude Include="include\core\Renderer.h" />
@@ -89,6 +92,7 @@
     <ClInclude Include="include\scene\Surroundings.h" />
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
+    <ClInclude Include="ZZZ.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />

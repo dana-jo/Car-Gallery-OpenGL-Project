@@ -105,7 +105,7 @@ GalleryShell::GalleryShell(
     r3->position = { -40.0f, 0.0f, -40.0f };
     addChild(r3);
 
-    Room4* r4 = new Room4(120.0f, 120.0f, 40.0f, t);
+    r4 = new Room4(120.0f, 120.0f, 40.0f, t);
     r4->position = { 40.0f, 0.0f, -40.0f };
     addChild(r4);
 

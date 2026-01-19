@@ -13,6 +13,11 @@ public:
 
     glm::vec3 position{ 0.0f, 0.0f, 3.0f };
 
+    // inside the car stuff
+    void toggleInsideCar(const glm::vec3& seatPos, float seatYaw, float seatPitch);
+    bool isInsideCar() const { return insideCar; }
+
+
 private:
     GLFWwindow* window;
 
@@ -32,4 +37,10 @@ private:
 
     void updateMouse();
     void updateKeyboard(float dt);
+
+    // inside the car stuff 
+    bool insideCar = false;
+    glm::vec3 savedPosition;
+    float savedYaw;
+    float savedPitch;
 };

@@ -20,6 +20,11 @@ void Camera::update()
 
 void Camera::updateKeyboard(float dt)
 {
+    // no WASD movement inside car
+    if(insideCar)
+        return;
+
+    // normal  movement
     float velocity = speed * dt;
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -91,4 +96,40 @@ glm::mat4 Camera::getView() const
 glm::vec3 Camera::getPosition() const
 {
     return position;
+}
+
+// inside the car stuff
+void Camera::toggleInsideCar(const glm::vec3& seatPos, float seatYaw, float seatPitch)
+{
+    if (!insideCar)
+    {
+        // save last position
+        savedPosition = position;
+        savedYaw = yaw;
+        savedPitch = pitch;
+
+        // move camera inside car
+        position = seatPos;
+        yaw = seatYaw;
+        pitch = seatPitch;
+
+        insideCar = true;
+    }
+    else
+    {
+        // restore state
+        position = savedPosition;
+        yaw = savedYaw;
+        pitch = savedPitch;
+
+        insideCar = false;
+    }
+
+    // recompute direction vectors
+    glm::vec3 f;
+    f.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    f.y = sin(glm::radians(pitch));
+    f.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front = glm::normalize(f);
+    right = glm::normalize(glm::cross(front, up));
 }

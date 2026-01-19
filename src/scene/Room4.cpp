@@ -3,6 +3,7 @@
 #include "graphics/Texture.h"
 #include "graphics/Material.h"
 #include "objects/WallWithDoor.h"
+#include "../../ZZZ.h"
 
 Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
 {
@@ -49,5 +50,11 @@ Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
     door4->setWallMaterial(wallMaterial);
     door4->setDoorMaterial(doorMaterial);
     addChild(door4);
+
+    car = new ZZZ();
+    car->position = { 0, 4, 4 };
+    car->scale = {3, 3, 3};
+    car->rotation.y = 180;
+    addChild(car);
 
 }

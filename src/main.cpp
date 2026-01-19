@@ -22,6 +22,7 @@
 
 #include <Model.h>
 #include <FamilyCar.h>
+#include "../ZZZ.h"
 
 
 // ------------------------------------------------------------
@@ -91,17 +92,19 @@ int main()
         });
 
 	World* world = new World();
-    FamilyCar* car = new FamilyCar();
-    car->position = { 43.0f, 0.0f, 43.0f };
-    car->rotation.y = glm::radians(-135.0f);
-    car->setCarMaterial();
-    world->addChild(car);
+
+    bool cPressedLastFrame = false;
+
+
 
     float lastTime = (float)glfwGetTime();
 
+    
 
     while (!glfwWindowShouldClose(window))
     {
+        world->gallery->shell->r4->car->setCamera(&camera, window);
+
         glfwPollEvents();
 
         camera.update();

@@ -1,6 +1,7 @@
 #pragma once
 #include "../core/SceneNode.h"
 #include "../graphics/Material.h"
+#include "scene/Room4.h"
 
 class LightNode;
 
@@ -21,10 +22,13 @@ public:
 
 	float t; // wall thickness
 
+    Room4* r4 = nullptr;
+
 private:
     Material* wallMaterial = nullptr;
     Material* floorMaterial = nullptr;
     Material* ceilingMaterial = nullptr;
     Material* doorMaterial = nullptr;
     Material* windowMaterial = nullptr;
+    
 };

@@ -29,6 +29,8 @@
     <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
     <ClCompile Include="src\objects\FamilyCar.cpp" />
+    <ClCompile Include="ZZZ.cpp" />
+    <ClCompile Include="carDoor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -61,6 +63,8 @@
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
     <ClInclude Include="include\objects\FamilyCar.h" />
+    <ClInclude Include="ZZZ.h" />
+    <ClInclude Include="carDoor.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
