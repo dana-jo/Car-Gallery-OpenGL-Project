@@ -71,15 +71,15 @@ GalleryShell::GalleryShell(
     room1->position = { -width / 3.0f, 0.0f, depth / 3.0f };
     addChild(room1);
 
-    Room2* r2 = new Room2(width, wallHeight, depth, t);
-    r2->position = { width / 3.0f, 0.0f, depth / 3.0f };
-    addChild(r2);
+    //Room2* r2 = new Room2(width, wallHeight, depth, t);
+    //r2->position = { width / 3.0f, 0.0f, depth / 3.0f };
+    //addChild(r2);
 
-    Room3* r3 = new Room3(width, wallHeight, depth, t);
-    r3->position = { -width / 3.0f, 0.0f, -depth / 3.0f };
-    addChild(r3);
+    //Room3* r3 = new Room3(width, wallHeight, depth, t);
+    //r3->position = { -width / 3.0f, 0.0f, -depth / 3.0f };
+    //addChild(r3);
 
-    Room4* r4 = new Room4(width, wallHeight, depth, t);
+    r4 = new Room4(width, wallHeight, depth, t);
     r4->position = { width / 3.0f, 0.0f, -depth / 3.0f };
     addChild(r4);
 

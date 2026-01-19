@@ -23,6 +23,8 @@
 #include <Model.h>
 #include <assimp/version.h>
 #include <FamilyCar.h>
+#include "../ZZZ.h"
+
 
 // ------------------------------------------------------------
 // Simple camera values
@@ -103,6 +105,10 @@ int main()
 
 	World* world = new World();
 
+    bool cPressedLastFrame = false;
+
+
+
     float lastTime = (float)glfwGetTime();
 
     // after creating camera
@@ -111,9 +117,13 @@ int main()
     // collect world objects with colliders
     std::vector<SceneNode*> worldObjects;
 
+    
+
 
     while (!glfwWindowShouldClose(window))
     {
+        world->gallery->shell->r4->car->setCamera(&camera, window);
+
         glfwPollEvents();
         if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS && !keyPressed)
         {

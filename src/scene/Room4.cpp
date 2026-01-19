@@ -3,6 +3,7 @@
 #include "graphics/Texture.h"
 #include "graphics/Material.h"
 #include "objects/WallWithDoor.h"
+#include "../../ZZZ.h"
 #include "Model.h"
 
 Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
@@ -83,4 +84,10 @@ Room4::Room4(float gWidth, float gHeight, float gDepth, float g)
 
     // Attach to shelf, not room
     shelf->addChild(miniCar);
+    car = new ZZZ();
+    car->position = { 0, 4, 4 };
+    car->scale = {3, 3, 3};
+    car->rotation.y = 180;
+    addChild(car);
+
 }

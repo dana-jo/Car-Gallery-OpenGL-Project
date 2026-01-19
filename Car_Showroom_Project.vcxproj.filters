@@ -34,6 +34,10 @@
     <ClCompile Include="src\utils\Mesh.cpp" />
 <<<<<<< HEAD
     <ClCompile Include="src\objects\FamilyCar.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="ZZZ.cpp" />
+    <ClCompile Include="carDoor.cpp" />
+=======
     <ClCompile Include="src\scene\FirstAidKit.cpp" />
     <ClCompile Include="src\scene\OxygenTank.cpp" />
     <ClCompile Include="src\scene\Stretcher.cpp" />
@@ -44,6 +48,7 @@
 =======
 >>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
 >>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
+>>>>>>> ec32a131cf8a5c6927fe42e8e45d6234ad385c47
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -81,6 +86,10 @@
     <ClInclude Include="include\scene\World.h" />
 <<<<<<< HEAD
     <ClInclude Include="include\objects\FamilyCar.h" />
+<<<<<<< HEAD
+    <ClInclude Include="ZZZ.h" />
+    <ClInclude Include="carDoor.h" />
+=======
     <ClInclude Include="include\scene\FirstAidKit.h" />
     <ClInclude Include="include\scene\OxygenTank.h" />
     <ClInclude Include="include\scene\Stretcher.h" />
@@ -92,6 +101,7 @@
 =======
 >>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
 >>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
+>>>>>>> ec32a131cf8a5c6927fe42e8e45d6234ad385c47
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
