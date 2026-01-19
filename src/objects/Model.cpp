@@ -33,7 +33,7 @@ void Model::loadModel(const std::string& path)
         aiProcess_JoinIdenticalVertices
     );
 
-    if (!scene || !scene->mRootNode)
+    if (!scene  || !scene->mRootNode)
     {
         std::cerr << "[ASSIMP ERROR] "
             << importer.GetErrorString() << std::endl;
@@ -86,7 +86,7 @@ MeshNode* Model::processMesh(aiMesh* mesh, const aiScene* scene)
             uvOffset.x = transform.mTranslation.x;
             uvOffset.y = transform.mTranslation.y;
         }
-    
+
     }
 
     // ---- Vertices ----
@@ -142,7 +142,6 @@ MeshNode* Model::processMesh(aiMesh* mesh, const aiScene* scene)
     if (mesh->mMaterialIndex >= 0)
     {
         aiMaterial* aiMat = scene->mMaterials[mesh->mMaterialIndex];
-
         aiString texturePath;
         if (aiMat->GetTexture(aiTextureType_BASE_COLOR, 0, &texturePath) == AI_SUCCESS ||
             aiMat->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath) == AI_SUCCESS)
@@ -158,6 +157,29 @@ MeshNode* Model::processMesh(aiMesh* mesh, const aiScene* scene)
     glm::vec3 size = max - min;
     glm::vec3 center = (max + min) * 0.5f;
 
-    return new MeshNode(engineMesh, material , size, center);
+    return new MeshNode(engineMesh, material, size, center);
 }
 
+void Model::enableBoxCollider()
+{
+    glm::vec3 globalMin(FLT_MAX);
+    glm::vec3 globalMax(-FLT_MAX);
+
+    // Gather bounds from children
+    for (auto* child : children)
+    {
+        MeshNode* meshNode = dynamic_cast<MeshNode*>(child);
+        if (!meshNode) continue;
+
+        glm::vec3 min = meshNode->getLocalMin();
+        glm::vec3 max = meshNode->getLocalMax();
+
+        globalMin = glm::min(globalMin, min);
+        globalMax = glm::max(globalMax, max);
+    }
+
+    glm::vec3 size = globalMax - globalMin;
+    glm::vec3 center = (globalMax + globalMin) * 0.5f;
+
+    collider = new BoxCollider(size, center);
+}
