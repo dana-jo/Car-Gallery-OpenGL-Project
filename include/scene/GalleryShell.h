@@ -21,10 +21,13 @@ public:
     void setupSpotLight(LightNode* light, const glm::vec3& position, const glm::vec3& direction);
 
 	float t; // wall thickness
+	float wallHeight;
 
     Room4* r4 = nullptr;
 
 private:
+    
+	
     Material* wallMaterial = nullptr;
     Material* floorMaterial = nullptr;
     Material* ceilingMaterial = nullptr;

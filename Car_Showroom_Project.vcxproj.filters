@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\objects\FamilyCar.cpp" />
     <ClCompile Include="src\objects\WallWithDoor.cpp" />
     <ClCompile Include="src\objects\WallWithHolecpp.cpp" />
+    <ClCompile Include="src\scene\Ambulance.cpp" />
+    <ClCompile Include="src\scene\CartoonCar.cpp" />
+    <ClCompile Include="src\scene\TayoBus.cpp" />
     <ClCompile Include="src\scene\Room1.cpp" />
     <ClCompile Include="src\core\Camera.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
@@ -28,9 +32,23 @@
     <ClCompile Include="src\scene\Surroundings.cpp" />
     <ClCompile Include="src\scene\World.cpp" />
     <ClCompile Include="src\utils\Mesh.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="src\objects\FamilyCar.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="ZZZ.cpp" />
     <ClCompile Include="carDoor.cpp" />
+=======
+    <ClCompile Include="src\scene\FirstAidKit.cpp" />
+    <ClCompile Include="src\scene\OxygenTank.cpp" />
+    <ClCompile Include="src\scene\Stretcher.cpp" />
+=======
+    <ClCompile Include="src\scene\StickMan.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="src\core\BoxCollider.cpp" />
+=======
+>>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
+>>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
+>>>>>>> ec32a131cf8a5c6927fe42e8e45d6234ad385c47
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\core\Camera.h" />
@@ -44,6 +62,7 @@
     <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\objects\Box.h" />
     <ClInclude Include="include\objects\Cylinder.h" />
+    <ClInclude Include="include\objects\FamilyCar.h" />
     <ClInclude Include="include\objects\MeshNode.h" />
     <ClInclude Include="include\objects\Model.h" />
     <ClInclude Include="include\objects\Object.h" />
@@ -51,6 +70,9 @@
     <ClInclude Include="include\objects\Polygon.h" />
     <ClInclude Include="include\objects\WallWithDoor.h" />
     <ClInclude Include="include\objects\WallWithHole.h" />
+    <ClInclude Include="include\scene\Ambulance.h" />
+    <ClInclude Include="include\scene\CartoonCar.h" />
+    <ClInclude Include="include\scene\TayoBus.h" />
     <ClInclude Include="include\scene\Gallery.h" />
     <ClInclude Include="include\scene\GalleryShell.h" />
     <ClInclude Include="include\scene\MainCar.h" />
@@ -62,9 +84,24 @@
     <ClInclude Include="include\scene\Surroundings.h" />
     <ClInclude Include="include\utils\Mesh.h" />
     <ClInclude Include="include\scene\World.h" />
+<<<<<<< HEAD
     <ClInclude Include="include\objects\FamilyCar.h" />
+<<<<<<< HEAD
     <ClInclude Include="ZZZ.h" />
     <ClInclude Include="carDoor.h" />
+=======
+    <ClInclude Include="include\scene\FirstAidKit.h" />
+    <ClInclude Include="include\scene\OxygenTank.h" />
+    <ClInclude Include="include\scene\Stretcher.h" />
+=======
+    <ClInclude Include="include\scene\StickMan.h" />
+<<<<<<< HEAD
+    <ClInclude Include="include\core\BoxCollider.h" />
+    <ClInclude Include="include\core\Collision.h" />
+=======
+>>>>>>> 21a5b23414e19e7c6d8d0f43fa3b8dc35d984ff6
+>>>>>>> 059c383bbb548d301c54844fa11c939b24f1be89
+>>>>>>> ec32a131cf8a5c6927fe42e8e45d6234ad385c47
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Downloads\back.png" />
@@ -99,6 +136,11 @@
     <Image Include="assets\textures\White.png" />
     <Image Include="assets\textures\window1.png" />
     <Image Include="assets\textures\Yellow.png" />
+    <Image Include="assets\textures\props\oxygen\metal.png" />
+    <Image Include="assets\textures\props\oxygen\tank_green.png" />
+    <Image Include="assets\textures\props\oxygen\green.png" />
+    <Image Include="assets\textures\props\oxygen\pressure.png" />
+    <Image Include="assets\textures\props\oxygen\round_metal.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_shader.frag" />

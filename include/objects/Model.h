@@ -6,6 +6,7 @@ class Model : public SceneNode
 {
 public:
     Model(const std::string& path);
+    void enableBoxCollider();
 
 
 private:

@@ -21,6 +21,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <Model.h>
+#include <assimp/version.h>
 #include <FamilyCar.h>
 #include "../ZZZ.h"
 
@@ -43,6 +44,7 @@ glm::mat4 getProjection(int w, int h)
 
 int main()
 {
+    
     // --------------------------------------------------------
     // GLFW / OpenGL init
     // --------------------------------------------------------
@@ -70,26 +72,36 @@ int main()
     renderer.shader = shader;
 
     Texture blueTex("assets/textures/Purple.png");
-	Texture brickTex("assets/textures/window1.png");
+    Texture brickTex("assets/textures/window1.png");
 
     Material blueMat(&blueTex, { 1.0f, 1.0f });
-	Material brickMaterial(&brickTex, { 1.0f, 1.0f });
+    Material brickMaterial(&brickTex, { 1.0f, 1.0f });
    
     // --------------------------------------------------------
     // Objects
     // --------------------------------------------------------
-    /*Model model("assets/pine/scrubPine.obj");
-    model.position = { 0.0f, -1.0f, -3.0f };
-    model.scale = { 0.005f, 0.005f, 0.005f };*/
+
+    
 
     Skybox skybox({
-    "assets/skybox/right.jpg",
-    "assets/skybox/left.jpg",
-    "assets/skybox/top.jpg",
-    "assets/skybox/bottom.jpg",
-    "assets/skybox/front.jpg",
-    "assets/skybox/back.jpg"
+        "assets/skybox/right.jpg",
+        "assets/skybox/left.jpg",
+        "assets/skybox/top.jpg",
+        "assets/skybox/bottom.jpg",
+        "assets/skybox/front.jpg",
+        "assets/skybox/back.jpg"
+    });
+
+    Skybox nightSkybox({
+        "assets/night_skybox/right.jpg",
+        "assets/night_skybox/left.jpg",
+        "assets/night_skybox/top.jpg",
+        "assets/night_skybox/bottom.jpg",
+        "assets/night_skybox/front.jpg",
+        "assets/night_skybox/back.jpg"
         });
+    bool isNight = false;
+    bool keyPressed = false;
 
 	World* world = new World();
 
@@ -99,16 +111,37 @@ int main()
 
     float lastTime = (float)glfwGetTime();
 
+    // after creating camera
+        camera.collider = new BoxCollider({ 0.5f, 1.8f, 0.5f });
+
+    // collect world objects with colliders
+    std::vector<SceneNode*> worldObjects;
+
     
+
 
     while (!glfwWindowShouldClose(window))
     {
         world->gallery->shell->r4->car->setCamera(&camera, window);
 
         glfwPollEvents();
+        if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS && !keyPressed)
+        {
+            isNight = !isNight;
+            keyPressed = true;
+        }
+        if (glfwGetKey(window, GLFW_KEY_N) == GLFW_RELEASE)
+        {
+            keyPressed = false;
+        }
+        std::vector<SceneNode*> worldObjects;
+        world->collectColliders(worldObjects);
+        camera.update(worldObjects);
+        //camera.update();
+    //    camera.update(worldObjects); // pass world objects for collision
+    //worldObjects.push_back(world); // recursively, or flatten tree and push nodes with colliders
 
-        camera.update();
-
+        std::cout << "Colliders count: " << worldObjects.size() << std::endl;
         float currentTime = (float)glfwGetTime();
         float dt = currentTime - lastTime;
         lastTime = currentTime;
@@ -123,9 +156,9 @@ int main()
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
 
-		shader.setVec3("viewPos", camera.getPosition());
+        shader.setVec3("viewPos", camera.getPosition());
 
-		shader.setFloat("material_shininess", 32.0f);
+        shader.setFloat("material_shininess", 32.0f);
 
         shader.setVec3("dirLight.direction", glm::vec3(-0.2f, -1.0f, -0.1f));
         shader.setVec3("dirLight.ambient", glm::vec3(0.25f));
@@ -135,17 +168,19 @@ int main()
 
         renderer.setSceneRoot(world);
         renderer.submit(world);
-		//renderer.submit(&model);
+        
         world->update(dt, camera.getPosition());
 
         renderer.drawAll(camera.getPosition());
         renderer.clear();
 
-        skybox.draw(view, projection);
+        if (isNight)
+            nightSkybox.draw(view, projection);
+        else
+            skybox.draw(view, projection);
 
         glfwSwapBuffers(window);
     }
-
 
     glfwTerminate();
     return 0;

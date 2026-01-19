@@ -6,19 +6,24 @@
 Material::Material(Texture* tex, const glm::vec2& tile)
     : diffuse(tex), tiling(tile)
 {
+    hasTexture = (tex != nullptr);
     updateFromTexture();
 }
 
 void Material::bind(Shader& shader, unsigned int unit) const
 {
-    if (diffuse)
+    shader.setBool("hasTexture", hasTexture);
+    shader.setVec3("materialColor", baseColor);
+    shader.setVec2("uvScale", tiling);
+    shader.setFloat("material_shininess", shininess);
+
+    if (hasTexture && diffuse)
     {
         diffuse->bind(unit);
         shader.setInt("tex", (int)unit);
     }
-    shader.setVec2("uvScale", tiling);
-	shader.setFloat("material_shininess", shininess);
 }
+
 
 void Material::updateFromTexture()
 {

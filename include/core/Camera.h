@@ -1,17 +1,20 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
+#include <vector>
+#include "SceneNode.h"
 
 class Camera
 {
 public:
     Camera(GLFWwindow* window);
 
-    void update();
+    void update(const std::vector<SceneNode*>& worldObjects);
     glm::vec3 getPosition() const;
     glm::mat4 getView() const;
 
-    glm::vec3 position{ 0.0f, 0.0f, 3.0f };
+    glm::vec3 position{ -60.0f, 20.0f, 100.0f };
+    BoxCollider* collider = nullptr; // camera collider
 
     // inside the car stuff
     void toggleInsideCar(const glm::vec3& seatPos, float seatYaw, float seatPitch);
@@ -30,7 +33,6 @@ private:
     glm::vec3 up{ 0.0f, 1.0f, 0.0f };
     glm::vec3 right{ 1.0f, 0.0f, 0.0f };
 
-
     bool firstMouse = true;
     float lastX = 640.0f;
     float lastY = 360.0f;
@@ -43,4 +45,6 @@ private:
     glm::vec3 savedPosition;
     float savedYaw;
     float savedPitch;
+    void updateKeyboard(float dt, const std::vector<SceneNode*>& worldObjects);
+    bool canMove(const glm::vec3& newPos, const std::vector<SceneNode*>& worldObjects);
 };
